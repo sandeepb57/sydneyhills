@@ -51,15 +51,15 @@
                                                                 <tbody>
                                                                     <tr>
                                                                         <td>Name</td>
-                                                                        <td>user</td>
+                                                                        <td><?php echo $this->session->userdata('firstName') . ' ' . $this->session->userdata('lastName'); ?></td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>Email</td>
-                                                                        <td>user@user.com</td>
+                                                                        <td><?php echo $this->session->userdata('emailAddress'); ?></td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>Mobile</td>
-                                                                        <td>Mobile</td>
+                                                                        <td><?php echo $this->session->userdata('primaryPhoneNumber'); ?></td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -75,7 +75,7 @@
                                                                         <td>Address</td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td>Address Details</td>
+                                                                        <td><?php echo $this->session->userdata('customerAddress'); ?></td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -102,7 +102,12 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-
+																	<tr class="small text-muted text-bold">
+                                                                        <td><?php echo $result[0]['typeOfRide']; ?></td>
+                                                                        <td><?php echo $result[0]['rideDate']; ?></td>
+                                                                        <td><?php echo $result[0]['rideTime']; ?></td>
+                                                                        <td><?php echo $result[0]['noOfRiders']; ?></td>
+                                                                    </tr>
                                                                 </tbody>
                                                             </table>
                                                         </div>
@@ -128,12 +133,28 @@
                                                                         <td>Age</td>
                                                                         <td>Height</td>
                                                                         <td>Weight</td>
+                                                                        <td>Ability Level</td>
+                                                                        <td>Price</td>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
+																<?php foreach ($result as $key => $data) {?>
                                                                     <tr>
-
+																		<td><?php echo ($key + 1); ?></td>
+                                                                        <td><?php echo $data['firstName'] . ' ' . $data['lastName']; ?></td>
+                                                                        <td><?php echo $data['riderPhoneNumber']; ?></td>
+                                                                        <td><?php echo $data['riderEmail']; ?></td>
+                                                                        <td><?php echo $data['age']; ?></td>
+                                                                        <td><?php echo $data['height']; ?></td>
+                                                                        <td><?php echo $data['weight']; ?></td>
+                                                                        <td><?php echo $data['riderAbilityLevel']; ?></td>
+                                                                        <td>$ <?php echo $data['rideAmount']; ?></td>
                                                                     </tr>
+																<?php }?>
+																	<tr>
+																		<td colspan="8" class="text-right small text-bold">Sub Total</td>
+                                                                    	<td>$ <?php echo number_format((float) ($result[0]['noOfRiders'] * $result[0]['rideAmount']), 2); ?></td>
+																	</tr>
                                                                 </tbody>
                                                             </table>
                                                         </div>
@@ -144,7 +165,7 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-10 col-xs-push-1 col-sm-8 col-sm-push-3  col-md-8 col-md-push-2 p-0">
-                                    <a href="javascript:void(0);"  class="btn btn-primary btn-block"> Continue to Pay</a>
+                                    <input type="submit" class="btn btn-primary btn-block" name="continue-to-pay" id="continue-to-pay" value="Continue to Pay">
                                 </div>
                             </div>
                         </div>

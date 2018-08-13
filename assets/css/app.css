@@ -964,3 +964,7 @@ td.text-left {
     word-wrap: break-word;
     word-break: break-word;
 }
+
+.error {
+    border-bottom: 1px solid #ff5144!important;
+}

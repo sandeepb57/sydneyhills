@@ -45,7 +45,8 @@
             <?php $this->load->view("header");?>
             <main>
                 <div class="container">
-                    <form class="booking-horses" name="booking-horses" id="booking-horses" action="<?php echo base_url(); ?>BookHorses/BookingHorsesFormSubmission" method="post">
+                    <form class="booking-horses" name="booking-horses" id="booking-horses">
+					<!-- action="<?php //echo base_url(); ?>BookHorses/ConfirmBookingDetails" method="post" -->
                         <div class="row  mt-105 mb-40">
                             <div class="desc2 animate-box">
                                 <div class="col-sm-6 col-md-6">
@@ -190,7 +191,7 @@
                                             <div class="col-xxs-12 col-xs-6  alternate">
                                                 <label for="class"> </label>
                                                 <select name="ability-level[]" class="ability-level">
-												<option value="" disabled selected>Select Ability Level </option>
+												<option value="">Select Ability Level </option>
 												<option value="1">Beginner</option>
 												<option value="2">Intermediate</option>
 												<option value="3">Expert</option>
@@ -216,6 +217,7 @@
             <?php $this->load->view("footer");?>
         </div>
     </div>
+	<script src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script>
     <?php $this->load->view("imports-bottom");?>
 
     <?php if ($this->session->flashdata('loginError')) {?>

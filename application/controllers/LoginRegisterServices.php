@@ -28,6 +28,7 @@ class LoginRegisterServices extends CI_Controller
                     "lastName" => $res['data'][0]['lastName'],
                     "primaryPhoneNumber" => $res['data'][0]['primaryPhoneNumber'],
                     "emailAddress" => $res['data'][0]['emailAddress'],
+                    "customerAddress" => $res['data'][0]['customerAddress'],
                     "userType" => $res['data'][0]['userType'],
                 );
                 $this->session->set_userdata($sessiondata);
@@ -75,6 +76,7 @@ class LoginRegisterServices extends CI_Controller
             "lastName",
             "primaryPhoneNumber",
             "emailAddress",
+            "customerAddress",
             "userType",
         );
         $this->session->unset_userdata($sessionData);

@@ -13,6 +13,7 @@ jQuery(document).ready(function($) {
         fixedWeekCount: false,
         showNonCurrentDates: true,
         selectable: true,
+        // hiddenDays: [0, 6],
         header: {
             left: 'today',
             center: 'title',
@@ -56,10 +57,6 @@ jQuery(document).ready(function($) {
         }
     });
 
-    // $("#continue-after-date").click(function() {
-    //     $("#type-of-ride-view").removeClass("hidden");
-    // });
-
     $('select.number-of-riders').change(function() {
         if ($("#type-of-ride").val() > 0) {
             if ($("#number-of-riders").val() >= 1) {
@@ -83,6 +80,89 @@ jQuery(document).ready(function($) {
     $("#confirmbooking").click(function() {
         showSignup();
     })
+
+    $("form[name='booking-horses']").validate({
+
+        submitHandler: function(form) {
+            var isValid = true;
+            $("input.rider-firstname").each(function() {
+                if ($(this).val() == "") {
+                    $(this).addClass('error');
+                    isValid = false;
+                } else {
+                    $(this).removeClass('error');
+                }
+            });
+
+            $("input.rider-lastname").each(function() {
+                if ($(this).val() == "") {
+                    $(this).addClass('error');
+                    isValid = false;
+                } else {
+                    $(this).removeClass('error');
+                }
+            });
+
+            $("input.rider-email").each(function() {
+                if ($(this).val() == "") {
+                    $(this).addClass('error');
+                    isValid = false;
+                } else {
+                    $(this).removeClass('error');
+                }
+            });
+
+            $("input.rider-mobile").each(function() {
+                if ($(this).val() == "") {
+                    $(this).addClass('error');
+                    isValid = false;
+                } else {
+                    $(this).removeClass('error');
+                }
+            });
+
+            $("input.rider-age").each(function() {
+                if ($(this).val() == "") {
+                    $(this).addClass('error');
+                    isValid = false;
+                } else {
+                    $(this).removeClass('error');
+                }
+            });
+
+            $("input.rider-height").each(function() {
+                if ($(this).val() == "") {
+                    $(this).addClass('error');
+                    isValid = false;
+                } else {
+                    $(this).removeClass('error');
+                }
+            });
+
+            $("input.rider-weight").each(function() {
+                if ($(this).val() == "") {
+                    $(this).addClass('error');
+                    isValid = false;
+                } else {
+                    $(this).removeClass('error');
+                }
+            });
+
+            $("select.ability-level").each(function() {
+                if ($(this).val() == "") {
+                    $(this).addClass('error');
+                    isValid = false;
+                } else {
+                    $(this).removeClass('error');
+                }
+            });
+
+            if (isValid) {
+                ConfirmBookingDetails();
+                return false;
+            }
+        }
+    });
 })
 
 function FetchTypeOfRides() {
@@ -151,6 +231,19 @@ function CheckAvailabilityOfSelectedDate(selectedDate) {
 
         } else {
             $("#continue-after-date").removeClass("hidden");
+        }
+    })
+}
+
+function ConfirmBookingDetails() {
+    $.post(base_url + "BookHorses/ConfirmBookingDetails", $("form#booking-horses").serialize(), function(data) {
+        // console.log(data)
+        data = $.parseJSON(data)
+        if (data.status == 200) {
+            console.log(data)
+            window.location.href = base_url + "BookHorses/FetchBookingDetails?bookingId=" + data.bookingId;
+        } else {
+            alert(data.errorAt);
         }
     })
 }
