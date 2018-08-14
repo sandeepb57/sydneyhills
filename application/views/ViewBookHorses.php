@@ -126,7 +126,7 @@
                                                             </tbody>
                                                         </table>
                                                     </div>
-													<div class=""><small><i>* Taxes are not included.</i></small></div>
+													<div class="text-bold"><small><i>* Taxes are not included.</i></small></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -206,7 +206,7 @@
                                     <?php if (!empty($this->session->userdata("customerId"))) {?>
                                     <input type="submit" class="btn btn-primary btn-block" name="submit" id="submit" value="Confirm Booking">
                                     <?php } else {?>
-                                    <button type="button" class="btn btn-primary btn-block" name="confirmbooking" id="confirmbooking">Confirm Booking</button>
+                                    <button type="submit" class="btn btn-primary btn-block" name="confirmbooking" id="confirmbooking" value="Confirm Booking">Confirm Booking</button>
                                     <?php }?>
                                 </div>
                             </div>
@@ -219,15 +219,6 @@
     </div>
 	<script src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script>
     <?php $this->load->view("imports-bottom");?>
-
-    <?php if ($this->session->flashdata('loginError')) {?>
-    <script>
-        $(document).ready(function() {
-            $("#showLogin").click();
-        });
-    </script>
-    <?php }?>
-
 </body>
 
 </html>

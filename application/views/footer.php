@@ -21,9 +21,9 @@
     <button class="btn btn-primary" title="Back to Top"><i class="fa fa-angle-double-up"></i></button>
 </div>
 
-<?php if (!$this->session->userdata("customerId")) {?>
+<?php // if (!$this->session->userdata("customerId")) {?>
 	<!-- Login and registeration -->
-	<div id="auth-modal" class="modal">
+	<!-- <div id="auth-modal" class="modal">
 		<div class="modal-container">
 			<div class="modal-header">
 				<h4 id="auth-heading">Login</h4>
@@ -33,14 +33,14 @@
 				<div id="login_form" class="login-form animate" style="display: none;">
 					<center class="text-danger">
 						<strong>
-						<?php if ($this->session->flashdata('loginError')) {?>
-						<?php echo $this->session->flashdata('loginError'); ?>
-						<?php }?>
+						<?php // if ($this->session->flashdata('loginError')) {?>
+						<?php // echo $this->session->flashdata('loginError'); ?>
+						<?php // }?>
 						</strong>
 					</center>
-					<form name="shlogin" id="shlogin" action="<?php echo base_url(); ?>LoginRegisterServices/LoginService" method="POST" />
+					<form name="shlogin" id="shlogin" action="<?php // echo base_url(); ?>LoginRegisterServices/LoginService" method="POST" />
 						<div class="form-group">
-							<label for="loginusername" class="small text-bold text-muted">Email or Phone Number</label>
+							<label for="loginusername" class="small text-bold text-muted">Email</label>
 							<input type="text" class="form-control" name="loginusername" id="loginusername" autocomplete="username">
 						</div>
 						<div class="form-group">
@@ -61,7 +61,7 @@
 					</form>
 				</div>
 				<div id="register-form" class="register-form animate" style="display: none;">
-					<form name="shregister" id="shregister" action="<?php echo base_url(); ?>LoginRegisterServices/RegisterService"  method="POST" autocomplete="off">
+					<form name="shregister" id="shregister" action="<?php // echo base_url(); ?>LoginRegisterServices/RegisterService"  method="POST" autocomplete="off">
 						<div class="form-group col-sm-6 col-md-6 col-lg-6">
 							<label for="firstname" class="small text-bold text-muted">First Name</label>
 							<input type="text" class="form-control" name="firstname" id="firstname" >
@@ -105,5 +105,5 @@
 			</div>
 		</div>
 	</div>
-	<div class="modal-overlay"></div>
-<?php }?>
+	<div class="modal-overlay"></div> -->
+<?php // }?>

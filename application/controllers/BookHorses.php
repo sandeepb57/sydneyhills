@@ -9,11 +9,13 @@ class BookHorses extends CI_Controller
         parent::__construct();
         $this->load->helper('url');
         $this->load->library('session');
+        $this->load->library('encryption');
         $this->load->model('BookHorsesModel');
-        // if(!$this->session->userdata("customerId")){
-		// 	$this->load->view('ViewBookHorses');
-        // }
+        if (!$this->session->userdata("customerId")) {
+            redirect(base_url());
+        }
     }
+
     public function index()
     {
         $this->load->view('ViewBookHorses');
@@ -22,17 +24,6 @@ class BookHorses extends CI_Controller
     public function CheckAvailabilityOfSlots()
     {
         echo true;
-    }
-
-    public function SeletOptionForTypeOfRide()
-    {
-        $typeOfRides = $this->BookHorsesModel->getTypeOfRides();
-        // print_r($typeOfRides);
-        if (is_array($typeOfRides) && sizeof($typeOfRides) > 0) {
-            echo json_encode(array("status" => 200, "typeOfRides" => $typeOfRides));
-        } else {
-            echo json_encode(array("status" => 204));
-        }
     }
 
     public function ConfirmBookingDetails()
@@ -75,7 +66,7 @@ class BookHorses extends CI_Controller
                 }
             }
             if (!in_array(false, $riderSubmission)) {
-                echo json_encode(array("status" => 200, "bookingId" => base64_encode($resBookingDetailsId), "msg" => "Booking details submitted."));
+                echo json_encode(array("status" => 200, "bookingId" => $this->encryption->encrypt($resBookingDetailsId), "msg" => "Booking details submitted."));
             } else {
                 echo json_encode(array("status" => 400, "errorAt" => "Booking rider details not submitted."));
             }
@@ -84,10 +75,27 @@ class BookHorses extends CI_Controller
         }
     }
 
+    public function PayNow()
+    {
+        // echo "<pre>";
+        // print_r($this->encryption->decrypt($this->input->get('bookingId')));
+        $this->load->view('ViewPayments', array("bookingId" => $this->input->get('bookingId', true)));
+    }
+
     public function ProceedToPay()
     {
-        echo "<pre>";
-        print_r($this->input->post());
+        // echo "<pre>";
+        // print_r($this->encryption->decrypt($this->input->get('bookingId')));
+        if ($this->input->get('bookingId', true)) {
+            $bookingDetsils = $this->BookHorsesModel->FetchBookingDetailsById($this->encryption->decrypt($this->input->get('bookingId', true)));
+            if (is_array($bookingDetsils) && sizeof($bookingDetsils) > 0) {
+                $this->load->view('ViewOrderSummary', array("status" => 200, "result" => $bookingDetsils));
+            } else {
+                $this->load->view('ViewOrderSummary', array("status" => 400, "result" => "Error in payment processing."));
+            }
+        } else {
+            $this->load->view('ViewOrderSummary', array("status" => 400, "result" => "Error in fetching data."));
+        }
     }
 
     public function OrderSummary()
@@ -98,7 +106,7 @@ class BookHorses extends CI_Controller
     public function FetchBookingDetails()
     {
         if ($this->input->get('bookingId', true)) {
-            $bookingDetsils = $this->BookHorsesModel->FetchBookingDetailsById(base64_decode($this->input->get('bookingId', true)));
+            $bookingDetsils = $this->BookHorsesModel->FetchBookingDetailsById($this->encryption->decrypt($this->input->get('bookingId', true)));
             if (is_array($bookingDetsils) && sizeof($bookingDetsils) > 0) {
                 $this->load->view('ViewBookingSummary', array("status" => 200, "result" => $bookingDetsils));
             } else {
@@ -108,4 +116,10 @@ class BookHorses extends CI_Controller
             $this->load->view('ViewBookingSummary', array("status" => 400, "result" => "Error in fetching data."));
         }
     }
+
+    // public function EncryptLib(){
+    //     $data = "Sandeep";
+    //     echo $enc = $this->encryption->encrypt($data);
+    //     echo $dec = "<br>".$this->encryption->decrypt($enc);
+    // }
 }

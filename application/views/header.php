@@ -10,7 +10,7 @@
         </div>
         <nav id="fh5co-menu-wrap" role="navigation">
             <ul class="sf-menu" id="fh5co-primary-menu">
-                <li class="active"><a href="BookingHorses.php">Home</a></li>
+                <li class="active"><a href="<?php echo base_url(); ?>">Home</a></li>
                 <li><a href="javascript:void(0);">lessons</a></li>
                 <li>
                     <a href="javascript:void(0);" class="fh5co-sub-ddown">Programs</a>
@@ -26,8 +26,8 @@
                 <li><a href="javascript:void(0);">agistment</a></li>
                 <li><a href="javascript:void(0);">Contact</a></li>
 					<?php if (empty($this->session->userdata("customerId"))) {?>
-						<li onclick="showLogin()" id="showLogin"><a href="javascript:void(0);">Sign in</a></li>
-						<li onclick="showSignup()" id="showSignup"><a href="javascript:void(0);">Sign up</a></li>
+						<li id="showLogin"><a href="<?php echo base_url(); ?>LoginRegisterServices/Signin">Sign in</a></li>
+						<li id="showSignup"><a href="<?php echo base_url(); ?>LoginRegisterServices/Signup">Sign up</a></li>
 					<?php } else {?>
 						<li><a href="javascript:void(0);" class="text-primary"><?php echo $this->session->userdata("firstName") . " " . $this->session->userdata("lastName"); ?></a></li>
 						<li><a href="<?php echo base_url(); ?>LoginRegisterServices/CustomerLogout" class="text-primary">Sign out</a></li>

@@ -13,6 +13,19 @@ class LoginRegisterServices extends CI_Controller
         $this->load->model('LoginRegisterModel');
     }
 
+    public function index()
+    {
+        $this->load->view('ViewBookHorses');
+	}
+
+	public function Signin(){
+		$this->load->view('signin');
+	}
+
+	public function Signup(){
+		$this->load->view('signup');
+	}
+
     public function LoginService()
     {
         $loginData = array(
@@ -35,11 +48,11 @@ class LoginRegisterServices extends CI_Controller
                 redirect(base_url());
             } else {
                 $this->session->set_flashdata("loginError", "Please enter valid email and password.");
-                redirect(base_url());
+                redirect('LoginRegisterServices/Signin');
             }
         } else {
             $this->session->set_flashdata("loginError", "Please enter valid email and password.");
-            redirect(base_url());
+            redirect('LoginRegisterServices/Signin');
         }
 
     }
@@ -60,9 +73,10 @@ class LoginRegisterServices extends CI_Controller
 
         $res = $this->LoginRegisterModel->RegisterCustomers($resgisterData);
         if ($res == 1) {
-            redirect(base_url());
+            redirect('LoginRegisterServices/Signin');
         } else {
-            $this->load->view('error_exception');
+			$this->session->set_flashdata("registerError", "Something went worng, try again!!!");
+            redirect('LoginRegisterServices/Signup');
         }
     }
 

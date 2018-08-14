@@ -6,6 +6,5 @@
 <script src="<?php echo base_url(); ?>assets/js/hoverIntent.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/superfish.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/classie.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/selectFx.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/main.js"></script>
 <script src='<?php echo base_url(); ?>assets/js/app.js'></script>

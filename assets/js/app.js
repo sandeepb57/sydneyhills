@@ -56,21 +56,10 @@ $(function($) {
         }
     });
 
-    $("#show-signup-form").click(function() {
-        $("#login_form").hide();
-        $('#auth-heading').html("Sign up");
-        $("#register-form").show();
-    });
-    $("#show-login-form").click(function() {
-        $("#register-form").hide();
-        $('#auth-heading').html("Sign in");
-        $("#login_form").show();
-    });
+    var availableHeight = $(window).height() - $('body > header').outerHeight() - $('body > footer').outerHeight();
 
-    $("#close-modal").click(function() {
-        $("body").removeClass('scroll-none');
-        $("#auth-modal,.modal-overlay").removeClass('open');
-    });
+    $('main').attr('style', 'min-height:' + availableHeight + 'px');
+
 })
 
 function HoverEffectForFormFields() {
@@ -87,20 +76,4 @@ function HoverEffectForFormFields() {
         }
         return false
     })
-}
-
-function showLogin() {
-    $("#auth-modal,.modal-overlay").addClass('open');
-    $('#auth-heading').html("Sign in");
-    $("body").addClass('scroll-none');
-    $("#register-form").hide();
-    $("#login_form").show();
-}
-
-function showSignup() {
-    $("#auth-modal,.modal-overlay").addClass('open');
-    $('#auth-heading').html("Sign up");
-    $("body").addClass('scroll-none');
-    $("#register-form").show();
-    $("#login_form").hide();
 }

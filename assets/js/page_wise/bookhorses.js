@@ -77,83 +77,81 @@ jQuery(document).ready(function($) {
         }
     });
 
-    $("#confirmbooking").click(function() {
-        showSignup();
-    })
-
     $("form[name='booking-horses']").validate({
 
         submitHandler: function(form) {
             var isValid = true;
             $("input.rider-firstname").each(function() {
                 if ($(this).val() == "") {
-                    $(this).addClass('error');
+                    $(this).addClass('error1');
                     isValid = false;
                 } else {
-                    $(this).removeClass('error');
+                    $(this).removeClass('error1');
                 }
             });
 
             $("input.rider-lastname").each(function() {
                 if ($(this).val() == "") {
-                    $(this).addClass('error');
+                    $(this).addClass('error1');
                     isValid = false;
                 } else {
-                    $(this).removeClass('error');
+                    $(this).removeClass('error1');
                 }
             });
 
             $("input.rider-email").each(function() {
                 if ($(this).val() == "") {
-                    $(this).addClass('error');
+                    $(this).addClass('error1');
                     isValid = false;
                 } else {
-                    $(this).removeClass('error');
+                    $(this).removeClass('error1');
                 }
             });
 
             $("input.rider-mobile").each(function() {
                 if ($(this).val() == "") {
-                    $(this).addClass('error');
+                    $(this).addClass('error1');
                     isValid = false;
                 } else {
-                    $(this).removeClass('error');
+                    $(this).removeClass('error1');
                 }
             });
 
             $("input.rider-age").each(function() {
                 if ($(this).val() == "") {
-                    $(this).addClass('error');
+                    console.log(!isNaN($(this).val()));
+                    $(this).addClass('error1');
                     isValid = false;
                 } else {
-                    $(this).removeClass('error');
+                    $(this).removeClass('error1');
                 }
             });
 
             $("input.rider-height").each(function() {
                 if ($(this).val() == "") {
-                    $(this).addClass('error');
+                    $(this).addClass('error1');
                     isValid = false;
                 } else {
-                    $(this).removeClass('error');
+                    $(this).removeClass('error1');
                 }
             });
+            !
 
             $("input.rider-weight").each(function() {
                 if ($(this).val() == "") {
-                    $(this).addClass('error');
+                    $(this).addClass('error1');
                     isValid = false;
                 } else {
-                    $(this).removeClass('error');
+                    $(this).removeClass('error1');
                 }
             });
 
             $("select.ability-level").each(function() {
                 if ($(this).val() == "") {
-                    $(this).addClass('error');
+                    $(this).addClass('error1');
                     isValid = false;
                 } else {
-                    $(this).removeClass('error');
+                    $(this).removeClass('error1');
                 }
             });
 
@@ -166,7 +164,7 @@ jQuery(document).ready(function($) {
 })
 
 function FetchTypeOfRides() {
-    $.get(base_url + "BookHorses/SeletOptionForTypeOfRide", null, function(data) {
+    $.get(base_url + "CommonServices/SeletOptionForTypeOfRide", null, function(data) {
         data = $.parseJSON(data)
         if (data.status == 200) {
             typeOfRideOptions = data.typeOfRides
@@ -236,14 +234,18 @@ function CheckAvailabilityOfSelectedDate(selectedDate) {
 }
 
 function ConfirmBookingDetails() {
-    $.post(base_url + "BookHorses/ConfirmBookingDetails", $("form#booking-horses").serialize(), function(data) {
-        // console.log(data)
-        data = $.parseJSON(data)
-        if (data.status == 200) {
-            console.log(data)
-            window.location.href = base_url + "BookHorses/FetchBookingDetails?bookingId=" + data.bookingId;
-        } else {
-            alert(data.errorAt);
-        }
-    })
+    if ($("#submit").length > 0) {
+        $.post(base_url + "BookHorses/ConfirmBookingDetails", $("form#booking-horses").serialize(), function(data) {
+            // console.log(data)
+            data = $.parseJSON(data)
+            if (data.status == 200) {
+                console.log(data)
+                window.location.href = base_url + "BookHorses/FetchBookingDetails?bookingId=" + data.bookingId;
+            } else {
+                alert(data.errorAt);
+            }
+        })
+    } else {
+        // window.location.href = base_url + "LoginRegisterServices/Signin?" + $("form#booking-horses").serialize();
+    }
 }

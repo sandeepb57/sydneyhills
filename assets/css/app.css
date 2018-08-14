@@ -736,6 +736,15 @@ form .form-group {
     border-radius: 0;
 }
 
+form#shregister .custom-checkbox {
+    float: left;
+    margin-top: -8px;
+}
+
+form#shregister .custom-control-label {
+    padding-left: 22px;
+}
+
 
 /*Modal dialogue*/
 
@@ -965,6 +974,21 @@ td.text-left {
     word-break: break-word;
 }
 
-.error {
+.error1 {
     border-bottom: 1px solid #ff5144!important;
+}
+
+.error {
+    color: #ff5144!important;
+}
+
+a.td-none.bordered {
+    padding: 5px 10px;
+    border: 1px solid #F78536;
+    border-radius: 5px;
+}
+
+a.td-none.bordered:hover {
+    background: #F78536;
+    color: #FFF;
 }
