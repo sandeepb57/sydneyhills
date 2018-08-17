@@ -4,8 +4,14 @@ var typeOfRideOptions = [];
 jQuery(document).ready(function($) {
 
     ridersFormFields = $('#no-of-riders-forms').first().html()
+    $('.riders-form').remove();
 
     FetchTypeOfRides()
+
+    if (localStorage.getItem("confirmbookingdetails")) {
+        console.log(localStorage.getItem("confirmbookingdetails"));
+        SubmitTheBookingDetails(localStorage.getItem("confirmbookingdetails"));
+    }
 
     // initializing fullcalendar
     $('#booking-calendar').fullCalendar({
@@ -14,14 +20,23 @@ jQuery(document).ready(function($) {
         showNonCurrentDates: true,
         selectable: true,
         // hiddenDays: [0, 6],
+        navLinks: true,
+        minTime: "09:00:00",
+        maxTime: "16:00:00",
+        scrollTime: "09:00:00",
+        slotDuration: "00:30:00",
         header: {
-            left: 'today',
+            left: 'today,prev,next',
             center: 'title',
-            right: 'prev,next'
+            right: 'month,agendaDay'
         },
+        // Calendar data fetching for availability
+        events: base_url + "CommonServices/CheckAvailabilityOfSlots",
         dayClick: function(date, jsEvent, view) {
             if (!this.hasClass("fc-past")) {
-                $(this).css('background-color', '#ffcc80');
+                $(".fc-highlight").css('background-color', '#ffcc80');
+            } else {
+                $('#booking-calendar').fullCalendar('unselect');
             }
         },
         select: function(start, end, jsEvent, view) {
@@ -29,8 +44,8 @@ jQuery(document).ready(function($) {
                 $('#booking-calendar').fullCalendar('unselect')
                 return false
             } else {
-                $(".fc-unthemed td.fc-highlight").css({ "background": "#ffcc80", "opacity": "1" })
-                $("td[data-date='" + $("#booking-date").val() + "']").removeAttr("style");
+                $(".fc-highlight").css({ "background": "#ffcc80", "opacity": "1" })
+                    // $("td[data-date='" + $("#booking-date").val() + "']").removeAttr("style");
                 $("#booking-date").val(start.format())
                 $("#type-of-ride-view").removeClass("hidden");
                 CheckAvailabilityOfSelectedDate(start.format())
@@ -41,7 +56,6 @@ jQuery(document).ready(function($) {
             // This is to disable previous button.
             if (moment().isAfter(view.intervalStart, 'day')) {
                 $('.fc-prev-button').addClass('fc-state-disabled');
-
             } else {
                 $('.fc-prev-button').removeClass('fc-state-disabled');
             }
@@ -167,6 +181,7 @@ function FetchTypeOfRides() {
     $.get(base_url + "CommonServices/SeletOptionForTypeOfRide", null, function(data) {
         data = $.parseJSON(data)
         if (data.status == 200) {
+            // Global variable
             typeOfRideOptions = data.typeOfRides
             $.each(data.typeOfRides, function(key, val) {
                 $("#type-of-ride").append('<option value="' + val.rideTypeId + '">' + val.typeOfRide + '</option>')
@@ -182,35 +197,42 @@ function AppendTheNumberOfRidersFormElements(val) {
     $(".type-of-ride").removeAttr("style");
 
     RidersCostDetails();
-
-    $('.riders-form').remove();
+    var previousLength = $('.riders-form').length;
+    if (previousLength > val) {
+        for (var i = previousLength; i > val; i--) {
+            console.log(i, i - 1);
+            $('.riders-form')[(i - 1)].remove();
+        }
+    } else {
+        $('.riders-form').remove();
+    }
+    previousLength = $('.riders-form').length > 0 ? $('.riders-form').length : 1;
     // console.log(val);
-    for (var i = 1; i <= val; i++) {
-        $("#no-of-riders-forms").append(ridersFormFields);
-        // Changing the label and input, for and id attributes names for multiple fields of same type.
-        $("label[for = rider-firstname]").attr("for", $("label[for = rider-firstname]").attr("for") + i)
-        $("input[id = rider-firstname]").attr("id", $("input[id = rider-firstname]").attr("id") + i)
-        $("label[for = rider-lastname]").attr("for", $("label[for = rider-lastname]").attr("for") + i)
-        $("input[id = rider-lastname]").attr("id", $("input[id = rider-lastname]").attr("id") + i)
-        $("label[for = rider-email]").attr("for", $("label[for = rider-email]").attr("for") + i)
-        $("input[id = rider-email]").attr("id", $("input[id = rider-email]").attr("id") + i)
-        $("label[for = rider-mobile]").attr("for", $("label[for = rider-mobile]").attr("for") + i)
-        $("input[id = rider-mobile]").attr("id", $("input[id = rider-mobile]").attr("id") + i)
-        $("label[for = rider-age]").attr("for", $("label[for = rider-age]").attr("for") + i)
-        $("input[id = rider-age]").attr("id", $("input[id = rider-age]").attr("id") + i)
-        $("label[for = rider-height]").attr("for", $("label[for = rider-height]").attr("for") + i)
-        $("input[id = rider-height]").attr("id", $("input[id = rider-height]").attr("id") + i)
-        $("label[for = rider-weight]").attr("for", $("label[for = rider-weight]").attr("for") + i)
-        $("input[id = rider-weight]").attr("id", $("input[id = rider-weight]").attr("id") + i)
+    if (previousLength < val) {
+        for (var i = previousLength; i <= val; i++) {
+            $("#no-of-riders-forms").append(ridersFormFields);
+            // Changing the label and input, for and id attributes names for multiple fields of same type.
+            $("label[for = rider-firstname]").attr("for", $("label[for = rider-firstname]").attr("for") + i)
+            $("input[id = rider-firstname]").attr("id", $("input[id = rider-firstname]").attr("id") + i)
+            $("label[for = rider-lastname]").attr("for", $("label[for = rider-lastname]").attr("for") + i)
+            $("input[id = rider-lastname]").attr("id", $("input[id = rider-lastname]").attr("id") + i)
+            $("label[for = rider-email]").attr("for", $("label[for = rider-email]").attr("for") + i)
+            $("input[id = rider-email]").attr("id", $("input[id = rider-email]").attr("id") + i)
+            $("label[for = rider-mobile]").attr("for", $("label[for = rider-mobile]").attr("for") + i)
+            $("input[id = rider-mobile]").attr("id", $("input[id = rider-mobile]").attr("id") + i)
+            $("label[for = rider-age]").attr("for", $("label[for = rider-age]").attr("for") + i)
+            $("input[id = rider-age]").attr("id", $("input[id = rider-age]").attr("id") + i)
+            $("label[for = rider-height]").attr("for", $("label[for = rider-height]").attr("for") + i)
+            $("input[id = rider-height]").attr("id", $("input[id = rider-height]").attr("id") + i)
+            $("label[for = rider-weight]").attr("for", $("label[for = rider-weight]").attr("for") + i)
+            $("input[id = rider-weight]").attr("id", $("input[id = rider-weight]").attr("id") + i)
 
-        $("div#no-of-riders-forms").find(".panel .panel-title").last().html("Rider " + i)
+            $("div#no-of-riders-forms").find(".panel .panel-title").last().html("Rider " + i)
+        }
     }
     $('.riders-form').removeClass("hidden");
     $('#confirm-booking-btn').removeClass("hidden");
     HoverEffectForFormFields(); // located in app.js
-    // [].slice.call(document.querySelectorAll('select.ability-level.cs-select')).forEach(function(el) {
-    //     new SelectFx(el);
-    // });
 }
 
 function RidersCostDetails() {
@@ -224,7 +246,8 @@ function RidersCostDetails() {
 
 function CheckAvailabilityOfSelectedDate(selectedDate) {
     console.log(selectedDate)
-    $.get(base_url + "BookHorses/CheckAvailabilityOfSlots", { selectedDate: selectedDate }, function(data) {
+    $.get(base_url + "CommonServices/CheckAvailabilityOfSlots", { selectedDate: selectedDate }, function(data) {
+        // console.log($.parseJSON(data));
         if (data != 1) {
 
         } else {
@@ -235,17 +258,27 @@ function CheckAvailabilityOfSelectedDate(selectedDate) {
 
 function ConfirmBookingDetails() {
     if ($("#submit").length > 0) {
-        $.post(base_url + "BookHorses/ConfirmBookingDetails", $("form#booking-horses").serialize(), function(data) {
-            // console.log(data)
-            data = $.parseJSON(data)
-            if (data.status == 200) {
-                console.log(data)
-                window.location.href = base_url + "BookHorses/FetchBookingDetails?bookingId=" + data.bookingId;
-            } else {
-                alert(data.errorAt);
-            }
-        })
+        // If user is already logged in
+        SubmitTheBookingDetails($("form#booking-horses").serialize());
     } else {
-        // window.location.href = base_url + "LoginRegisterServices/Signin?" + $("form#booking-horses").serialize();
+        // If user is not logged in
+        localStorage.setItem("confirmbookingdetails", $("form#booking-horses").serialize());
+        window.location.href = base_url + "LoginRegisterServices/Signin"
     }
+}
+
+function SubmitTheBookingDetails(params) {
+    $.post(base_url + "BookHorses/ConfirmBookingDetails", params, function(data) {
+        // console.log(data)
+        data = $.parseJSON(data)
+        if (data.status == 200) {
+            console.log(data)
+            if (localStorage.getItem("confirmbookingdetails")) {
+                localStorage.removeItem("confirmbookingdetails");
+            }
+            window.location.href = base_url + "BookHorses/FetchBookingDetails?bookingId=" + data.bookingId;
+        } else {
+            alert(data.errorAt);
+        }
+    })
 }

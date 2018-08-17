@@ -21,11 +21,6 @@ class BookHorses extends CI_Controller
         $this->load->view('ViewBookHorses');
     }
 
-    public function CheckAvailabilityOfSlots()
-    {
-        echo true;
-    }
-
     public function ConfirmBookingDetails()
     {
         // echo "<pre>";
@@ -66,7 +61,7 @@ class BookHorses extends CI_Controller
                 }
             }
             if (!in_array(false, $riderSubmission)) {
-                echo json_encode(array("status" => 200, "bookingId" => $this->encryption->encrypt($resBookingDetailsId), "msg" => "Booking details submitted."));
+                echo json_encode(array("status" => 200, "bookingId" => base64_encode($this->encryption->encrypt($resBookingDetailsId)), "msg" => "Booking details submitted."));
             } else {
                 echo json_encode(array("status" => 400, "errorAt" => "Booking rider details not submitted."));
             }
@@ -87,7 +82,9 @@ class BookHorses extends CI_Controller
         // echo "<pre>";
         // print_r($this->encryption->decrypt($this->input->get('bookingId')));
         if ($this->input->get('bookingId', true)) {
-            $bookingDetsils = $this->BookHorsesModel->FetchBookingDetailsById($this->encryption->decrypt($this->input->get('bookingId', true)));
+            $bookingId = $this->input->get('bookingId');
+            $bookingId = $this->encryption->decrypt(base64_decode($bookingId));
+            $bookingDetsils = $this->BookHorsesModel->FetchBookingDetailsById($bookingId);
             if (is_array($bookingDetsils) && sizeof($bookingDetsils) > 0) {
                 $this->load->view('ViewOrderSummary', array("status" => 200, "result" => $bookingDetsils));
             } else {
@@ -98,15 +95,13 @@ class BookHorses extends CI_Controller
         }
     }
 
-    public function OrderSummary()
-    {
-        $this->load->view('ViewOrderSummary');
-    }
-
     public function FetchBookingDetails()
     {
+
         if ($this->input->get('bookingId', true)) {
-            $bookingDetsils = $this->BookHorsesModel->FetchBookingDetailsById($this->encryption->decrypt($this->input->get('bookingId', true)));
+            $bookingId = $this->input->get('bookingId');
+            $bookingId = $this->encryption->decrypt(base64_decode($bookingId));
+            $bookingDetsils = $this->BookHorsesModel->FetchBookingDetailsById($bookingId);
             if (is_array($bookingDetsils) && sizeof($bookingDetsils) > 0) {
                 $this->load->view('ViewBookingSummary', array("status" => 200, "result" => $bookingDetsils));
             } else {
@@ -117,9 +112,12 @@ class BookHorses extends CI_Controller
         }
     }
 
-    // public function EncryptLib(){
-    //     $data = "Sandeep";
-    //     echo $enc = $this->encryption->encrypt($data);
-    //     echo $dec = "<br>".$this->encryption->decrypt($enc);
-    // }
+    public function EncryptLib()
+    {
+        $data = "4bfddf85608eebbdb6a288d50a605796f2b6f89921ca47243daf3145754ff900a37862fb3cee4b751d733294c9e19505958fefff8869235e49be8232efe1903fZdrvvDlPy+kWnEkDO8iizhdYOY0uvGEh7U/VluF8bds=";
+        // echo $enc = $this->encryption->encrypt($data);
+        echo $dec = "<br>" . $this->encryption->decrypt($data);
+        echo $this->session->userdata("customerId");
+
+    }
 }

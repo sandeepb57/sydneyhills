@@ -298,9 +298,9 @@ label.active {
     font-weight: 500;
 }
 
-.fc-unthemed td.fc-highlight {
+.fc-highlight {
     background: #ffcc80;
-    border-bottom: 4px solid #ffb74d;
+    border-bottom: 2px solid #ffb74d;
     opacity: 1;
 }
 

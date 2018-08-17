@@ -204,9 +204,9 @@
                             <div class="row mb-30 hidden" id="confirm-booking-btn">
                                 <div class="col-xs-12 col-sm-6 col-sm-push-3">
                                     <?php if (!empty($this->session->userdata("customerId"))) {?>
-                                    <input type="submit" class="btn btn-primary btn-block" name="submit" id="submit" value="Confirm Booking">
+                                    	<input type="submit" class="btn btn-primary btn-block" name="submit" id="submit" value="Confirm Booking">
                                     <?php } else {?>
-                                    <button type="submit" class="btn btn-primary btn-block" name="confirmbooking" id="confirmbooking" value="Confirm Booking">Confirm Booking</button>
+                                    	<button type="submit" class="btn btn-primary btn-block" name="confirmbooking" id="confirmbooking" value="Confirm Booking">Confirm Booking</button>
                                     <?php }?>
                                 </div>
                             </div>

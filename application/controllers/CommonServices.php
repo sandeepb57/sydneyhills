@@ -10,9 +10,9 @@ class CommonServices extends CI_Controller
         $this->load->helper('url');
         $this->load->library('session');
         $this->load->model('CommonServicesModel');
-	}
+    }
 
-	public function SeletOptionForTypeOfRide()
+    public function SeletOptionForTypeOfRide()
     {
         $typeOfRides = $this->CommonServicesModel->getTypeOfRides();
         // print_r($typeOfRides);
@@ -23,4 +23,9 @@ class CommonServices extends CI_Controller
         }
     }
 
+    public function CheckAvailabilityOfSlots()
+    {
+        // echo json_encode(array(array("start" => "2018-08-25", "borderColor" => "#ef9a9a", "editable" => false, "rendering" => "background"), array("start" => "2018-08-17", "borderColor" => "#ef9a9a", "editable" => false, "rendering" => "background"), array("start" => "2018-08-18", "borderColor" => "#ef9a9a", "editable" => false, "rendering" => "background"), array("start" => "2018-08-19", "borderColor" => "#ef9a9a", "editable" => false, "rendering" => "background"), array("start" => "2018-08-20", "borderColor" => "#81c784", "editable" => false, "rendering" => "background"), array("start" => "2018-08-21", "borderColor" => "#81c784", "editable" => false, "rendering" => "background"), array("start" => "2018-08-22", "borderColor" => "#81c784", "editable" => false, "rendering" => "background"), array("start" => "2018-08-23", "borderColor" => "#81c784", "editable" => false, "rendering" => "background")));
+        echo json_encode(array(array("start" => "2018-08-25", "borderColor" => "#ef9a9a", "editable" => false, "rendering" => "background")));
+    }
 }
