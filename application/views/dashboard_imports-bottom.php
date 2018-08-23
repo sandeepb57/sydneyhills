@@ -1,0 +1,26 @@
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/jquery/dist/jquery.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/fastclick/lib/fastclick.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/nprogress/nprogress.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/Chart.js/dist/Chart.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/gauge.js/dist/gauge.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/iCheck/icheck.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/skycons/skycons.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/Flot/jquery.flot.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/Flot/jquery.flot.pie.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/Flot/jquery.flot.time.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/Flot/jquery.flot.stack.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/Flot/jquery.flot.resize.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/flot.curvedlines/curvedLines.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/DateJS/build/date.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/jqvmap/dist/jquery.vmap.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/moment/min/moment.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/build/js/custom.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dashboard/js/custom.js"></script>
+
