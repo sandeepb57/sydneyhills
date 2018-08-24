@@ -992,3 +992,26 @@ a.td-none.bordered:hover {
     background: #F78536;
     color: #FFF;
 }
+.paypal-heading h1{
+    word-wrap: break-word;
+    line-height: 1.2;
+    padding: 1rem 0rem;
+    text-align: left;
+    font-size: 2rem;
+    text-transform: capitalize;
+    margin-bottom: 0;
+}
+#pay-options{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    vertical-align: middle;
+}
+#pay-options input{
+    height: 30px;
+}
+#pay-options label{
+    padding: 0 1rem;
+    margin: 0rem;
+    transform: translateX(0);
+}
