@@ -443,7 +443,8 @@ body .container.body .right_col {
 
 .nav-md .container.body .right_col {
     padding: 10px 20px 0;
-    margin-left: 230px
+    margin-left: 230px;
+    padding-bottom:20px;
 }
 
 .nav_title {
@@ -4992,4 +4993,31 @@ table.table.table-borderless * {
     display: inline-block;
     padding: 10px 0 0;
     background: #fff;
+}
+.horses-summary{
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.ride_img_block{
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+.ride_img_block .left{
+    margin-right: 15px;
+}
+.ride_img_block img{
+    padding:5px;
+}
+.ride_img_block .ride-heading{
+    font-size:20px;
+    font-weight: 500;
+}
+.ride_img_block.border-after:after{
+    content: "";
+    display: block;
+    border-right: 2px solid #f0f0f0;
+    height: 100%;
+    position: absolute;
+    right: 0;
 }
