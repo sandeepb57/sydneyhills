@@ -84,6 +84,16 @@
                                                     <h2 class="panel-title"> Ride details</h2>
                                                 </div>
                                                 <div class="panel-body">
+													<div class="col-xxs-12 col-xs-12 alternate">
+														<section>
+															<div class="col-xxs-12 col-xs-6">
+																<h5><b>Seleted Date, Time</b></h5>
+															</div>
+															<div class="col-xxs-12 col-xs-6">
+																<h5 id="selected-date-time"></h5>
+															</div>
+														</section>
+                                                    </div>
                                                     <div class="col-xxs-12 col-xs-6 mt alternate">
                                                         <section>
 															<select id="type-of-ride" name="type-of-ride" class="type-of-ride">

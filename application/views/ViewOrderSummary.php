@@ -67,9 +67,9 @@
 																	<tr>
 																	<td class="text-left" colspan="4">
 																		<p class="dont-break-out small">
-																		Name: Jilani Sk<br>
-																		Mobile: 9966157155<br>
-																		Email: sandeep@gmail.com<br>
+																		Name: <?php echo $this->session->userdata("firstName") . " " . $this->session->userdata("lastName"); ?><br>
+																		Mobile: <?php echo $this->session->userdata("primaryPhoneNumber"); ?><br>
+																		Email: <?php echo $this->session->userdata("emailAddress"); ?><br>
 																		Address:<br>
 																		<?php echo $this->session->userdata("customerAddress"); ?>
 																		</p>

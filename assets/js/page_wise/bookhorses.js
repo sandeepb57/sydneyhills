@@ -19,6 +19,7 @@ jQuery(document).ready(function($) {
         fixedWeekCount: false,
         showNonCurrentDates: true,
         selectable: true,
+        disableDragging: true,
         // hiddenDays: [0, 6],
         navLinks: true,
         minTime: "09:00:00",
@@ -47,6 +48,7 @@ jQuery(document).ready(function($) {
                 $(".fc-highlight").css({ "background": "#ffcc80", "opacity": "1" })
                     // $("td[data-date='" + $("#booking-date").val() + "']").removeAttr("style");
                 $("#booking-date").val(start.format())
+                $("#selected-date-time").html((new Date(start.format())).toLocaleString(Intl.DateTimeFormat().resolvedOptions().locale, { hour12: true, timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone }))
                 $("#type-of-ride-view").removeClass("hidden");
                 CheckAvailabilityOfSelectedDate(start.format())
             }
