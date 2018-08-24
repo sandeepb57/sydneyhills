@@ -978,8 +978,11 @@ td.text-left {
     border-bottom: 1px solid #ff5144!important;
 }
 
-.error {
+.state-error {
     color: #ff5144!important;
+    font-style:normal;
+    font-size: 12px;
+    font-weight: 500;
 }
 
 a.td-none.bordered {

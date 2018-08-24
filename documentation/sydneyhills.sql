@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 13, 2018 at 03:37 PM
+-- Generation Time: Aug 24, 2018 at 11:23 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -21,6 +21,29 @@ SET time_zone = "+00:00";
 --
 -- Database: `sydneyhills`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sh_abilitylevel`
+--
+
+CREATE TABLE `sh_abilitylevel` (
+  `abilityLevelId` int(11) NOT NULL,
+  `abilityName` varchar(45) NOT NULL,
+  `addedDate` datetime NOT NULL,
+  `editedDate` datetime NOT NULL,
+  `abilityLevelStatus` tinyint(2) NOT NULL DEFAULT '1' COMMENT '1 – Active(Default) 2 – Inactive '
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sh_abilitylevel`
+--
+
+INSERT INTO `sh_abilitylevel` (`abilityLevelId`, `abilityName`, `addedDate`, `editedDate`, `abilityLevelStatus`) VALUES
+(1, 'Beginner', '2018-08-13 18:24:43', '0000-00-00 00:00:00', 1),
+(2, 'Intermediate', '2018-08-13 18:24:43', '0000-00-00 00:00:00', 1),
+(3, 'Expert', '2018-08-13 18:24:43', '0000-00-00 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -57,14 +80,14 @@ CREATE TABLE `sh_bookingridersdetails` (
   `firstName` varchar(45) NOT NULL,
   `lastName` varchar(45) NOT NULL,
   `age` int(11) NOT NULL,
-  `height` int(11) NOT NULL,
-  `weight` int(11) NOT NULL,
+  `height` decimal(10,2) NOT NULL,
+  `weight` decimal(10,2) NOT NULL,
   `riderEmail` varchar(100) NOT NULL,
   `riderPhoneNumber` varchar(13) NOT NULL,
   `riderAbilityLevel` int(11) NOT NULL,
   `addedDate` datetime NOT NULL,
   `editedDate` datetime NOT NULL,
-  `bookingRidersDetailsStatus` tinyint(2) NOT NULL COMMENT '1 – Active(Default) 2 – Inactive '
+  `bookingRidersDetailsStatus` tinyint(2) NOT NULL DEFAULT '1' COMMENT '1 – Active(Default) 2 – Inactive '
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -106,16 +129,6 @@ CREATE TABLE `sh_customers` (
   `editedDate` datetime NOT NULL,
   `customerstatus` tinyint(2) NOT NULL DEFAULT '1' COMMENT '1 – Active(Default) 2 – Inactive '
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sh_customers`
---
-
-INSERT INTO `sh_customers` (`customerId`, `firstName`, `lastName`, `primaryPhoneNumber`, `secondaryPhoneNumber`, `emailAddress`, `customerAddress`, `customerPassword`, `userType`, `phoneNumberStatus`, `emailStatus`, `dateOfBirth`, `addedDate`, `editedDate`, `customerstatus`) VALUES
-(1, 'sad', 'sadsad', 'assdsa', '', 'dsdafd@sdfsd.ghj', ' fsdfs', '$2y$10$BDkjkJa87yb3Whl.LylbgeTA0.NUPaN79ACriqsjH7j/RHZtnLbQy', 1, 0, 0, '0000-00-00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
-(2, 'sdfsf', 'fsdfsd', '435345', '', 'sandeep@gmail.com', ' sdfsfdsf', '$2y$10$AaabPGuX2ZOiQvv4EcsDteyOvSgPoeTEmEcPoxErcGZ7uLrFO42NW', 1, 0, 0, '0000-00-00', '2018-08-08 16:48:54', '0000-00-00 00:00:00', 1),
-(3, 'sandeep', 'b', '9874563210', '', 'sandeep57@gmail.com', ' sdsdf', '$2y$10$AaabPGuX2ZOiQvv4EcsDteyOvSgPoeTEmEcPoxErcGZ7uLrFO42NW', 1, 0, 0, '0000-00-00', '2018-08-08 17:51:05', '0000-00-00 00:00:00', 1),
-(8, 'j', 'sh', '9856324710', '', 'jsh@gmail.com', 'sdfsdf ', '$2y$10$AaabPGuX2ZOiQvv4EcsDteyOvSgPoeTEmEcPoxErcGZ7uLrFO42NW', 1, 0, 0, '0000-00-00', '2018-08-13 13:21:39', '0000-00-00 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -165,6 +178,12 @@ INSERT INTO `sh_typeofrides` (`rideTypeId`, `typeOfRide`, `rideAmount`, `addedDa
 --
 
 --
+-- Indexes for table `sh_abilitylevel`
+--
+ALTER TABLE `sh_abilitylevel`
+  ADD PRIMARY KEY (`abilityLevelId`);
+
+--
 -- Indexes for table `sh_bookingdetails`
 --
 ALTER TABLE `sh_bookingdetails`
@@ -208,6 +227,12 @@ ALTER TABLE `sh_typeofrides`
 --
 
 --
+-- AUTO_INCREMENT for table `sh_abilitylevel`
+--
+ALTER TABLE `sh_abilitylevel`
+  MODIFY `abilityLevelId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `sh_bookingdetails`
 --
 ALTER TABLE `sh_bookingdetails`
@@ -229,7 +254,7 @@ ALTER TABLE `sh_customerfamilydetails`
 -- AUTO_INCREMENT for table `sh_customers`
 --
 ALTER TABLE `sh_customers`
-  MODIFY `customerId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `customerId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `sh_typeofhorses`

@@ -1,8 +1,17 @@
 $.noConflict()
 
-jQuery(document).ready(function($) {
+jQuery(document).ready(function ($) {
 
     $("form[name='shlogin']").validate({
+
+        /* @validation states + elements 
+         ------------------------------------------- */
+        errorClass: "state-error",
+        validClass: "state-success",
+        errorElement: "em",
+        onkeyup: false,
+        onclick: false,
+
         rules: {
             loginusername: {
                 email: true,
@@ -14,21 +23,42 @@ jQuery(document).ready(function($) {
             loginusername: "Please enter your email.",
             loginpassword: "Please enter your password."
         },
-        submitHandler: function(form) {
+
+        /* @validation highlighting + error placement  
+         ---------------------------------------------------- */
+        highlight: function (element, errorClass, validClass) {
+            $(element).closest('.field').addClass(errorClass).removeClass(validClass);
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).closest('.field').removeClass(errorClass).addClass(validClass);
+        },
+        errorPlacement: function (error, element) {
+            if (element.is(":radio") || element.is(":checkbox")) {
+                element.closest('.option-group').after(error);
+            } else {
+                error.insertAfter(element.parent());
+            }
+        },
+
+        submitHandler: function (form) {
             form.submit();
         }
     });
 
     $("form[name='shregister']").validate({
+        /* @validation states + elements 
+         ------------------------------------------- */
+        errorClass: "state-error",
+        validClass: "state-success",
+        errorElement: "em",
+        onkeyup: false,
+        onclick: false,
         rules: {
             firstname: "required",
             lastname: "required",
             phone: "required",
             email: "required",
-            address: {
-                "address": '',
-                required: true
-            },
+            address: "required",
             password: "required",
             check_agree: "required"
         },
@@ -38,14 +68,27 @@ jQuery(document).ready(function($) {
             phone: "Please enter your phone number.",
             email: "Please enter your email.",
             password: "Please enter your password.",
+            address: "Please enter your address.",
             check_agree: "Please check it."
         },
-        submitHandler: function(form) {
+        /* @validation highlighting + error placement  
+         ---------------------------------------------------- */
+        highlight: function (element, errorClass, validClass) {
+            $(element).closest('.field').addClass(errorClass).removeClass(validClass);
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).closest('.field').removeClass(errorClass).addClass(validClass);
+        },
+        errorPlacement: function (error, element) {
+            if (element.is(":radio") || element.is(":checkbox")) {
+                element.closest('.option-group').after(error);
+            } else {
+                error.insertAfter(element.parent());
+            }
+        },
+        submitHandler: function (form) {
             form.submit();
         }
     });
 
-    $.validator.addMethod("address", function(value) {
-        return value != " " && value != "";
-    }, 'Please enter your address');
-})
+});
