@@ -12,10 +12,12 @@ class Horses extends CI_Controller {
     }
 
     public function index() {
+		$this->session->set_userdata('active', true);
         $this->load->view('all_horses');
     }
 
     public function addhorse() {
+		$this->session->set_userdata('active', true);
         $this->load->view('add_horse');
     }
 

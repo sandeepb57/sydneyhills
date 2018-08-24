@@ -29,8 +29,8 @@ class BookHorses extends CI_Controller
         $bookingDetails = array(
             "customerId" => $this->session->userdata('customerId', true),
             "typeOfRide" => $this->input->post('type-of-ride', true),
-            "rideDate" => $this->input->post('booking-date', true),
-            // "rideTime" => $this->input->post('email', true),
+            "rideDate" => date('Y-m-d',strtotime($this->input->post('booking-date', true))),
+            "rideTime" => date('H:i:s',strtotime($this->input->post('booking-date', true))),
             "noOfRiders" => $this->input->post('number-of-riders', true),
             "bookingStatus" => 1,
             "addedDate" => date("Y-m-d H:i:s"),

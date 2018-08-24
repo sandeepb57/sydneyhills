@@ -9,7 +9,7 @@ jQuery(document).ready(function($) {
     FetchTypeOfRides()
 
     if (localStorage.getItem("confirmbookingdetails")) {
-        console.log(localStorage.getItem("confirmbookingdetails"));
+        // console.log(localStorage.getItem("confirmbookingdetails"));
         SubmitTheBookingDetails(localStorage.getItem("confirmbookingdetails"));
     }
 
@@ -31,7 +31,7 @@ jQuery(document).ready(function($) {
             right: 'month,agendaDay'
         },
         // Calendar data fetching for availability
-        events: base_url + "CommonServices/CheckAvailabilityOfSlots",
+        // events: base_url + "CommonServices/CheckAvailabilityOfSlots",
         dayClick: function(date, jsEvent, view) {
             if (!this.hasClass("fc-past")) {
                 $(".fc-highlight").css('background-color', '#ffcc80');
@@ -133,7 +133,7 @@ jQuery(document).ready(function($) {
 
             $("input.rider-age").each(function() {
                 if ($(this).val() == "") {
-                    console.log(!isNaN($(this).val()));
+                    // console.log(!isNaN($(this).val()));
                     $(this).addClass('error1');
                     isValid = false;
                 } else {
@@ -200,7 +200,7 @@ function AppendTheNumberOfRidersFormElements(val) {
     var previousLength = $('.riders-form').length;
     if (previousLength > val) {
         for (var i = previousLength; i > val; i--) {
-            console.log(i, i - 1);
+            // console.log(i, i - 1);
             $('.riders-form')[(i - 1)].remove();
         }
     } else {
@@ -245,7 +245,7 @@ function RidersCostDetails() {
 }
 
 function CheckAvailabilityOfSelectedDate(selectedDate) {
-    console.log(selectedDate)
+    // console.log(selectedDate)
     $.get(base_url + "CommonServices/CheckAvailabilityOfSlots", { selectedDate: selectedDate }, function(data) {
         // console.log($.parseJSON(data));
         if (data != 1) {
@@ -272,7 +272,7 @@ function SubmitTheBookingDetails(params) {
         // console.log(data)
         data = $.parseJSON(data)
         if (data.status == 200) {
-            console.log(data)
+            // console.log(data)
             if (localStorage.getItem("confirmbookingdetails")) {
                 localStorage.removeItem("confirmbookingdetails");
             }

@@ -190,7 +190,7 @@
 										</div>
 									</div>
 									<div class="col-xs-10 col-xs-push-1 col-sm-8 col-sm-push-3  col-md-8 col-md-push-2 p-0">
-										<a href="javascript:void(0);" class="btn btn-primary btn-block"> Go to My Bookings</a>
+										<a class="btn btn-primary btn-block" href="<?php echo base_url(); ?>Dashboard/viewbookings">Go to my bookings</a>
 									</div>
 								</div>
 							</div>

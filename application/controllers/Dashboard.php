@@ -14,20 +14,24 @@ class Dashboard extends CI_Controller {
     /* Admin Dashboard  */
 
     public function index() {
+		$this->session->set_userdata('active', true);
         $this->load->view('admin_dashboard');
     }
 
     public function allbookings() {
+		$this->session->set_userdata('active', true);
         $this->load->view('all_bookings');
     }
 
     /* User Dashboard  */
 
     public function userdashboard() {
+		$this->session->set_userdata('active', false);
         $this->load->view('user_dashboard');
     }
 
     public function viewbookings() {
+		$this->session->set_userdata('active', false);
         $this->load->view('my_bookings');
     }
 

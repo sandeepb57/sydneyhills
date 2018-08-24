@@ -185,7 +185,7 @@
 									<div class="col-xs-10 col-xs-push-1 col-sm-8 col-sm-push-3 col-md-8 col-md-push-2">
 									<div class="row mb-30">
 									<div class="col-xs-6  col-sm-6  col-md-6  ">
-										<a class="btn btn-primary btn-block" href="<?php echo base_url(); ?>BookHorses/PayNow?bookingId=<?php echo base64_encode($this->encryption->encrypt($result[0]["bookingId"])); ?>">Go to my bookings</a>
+										<a class="btn btn-primary btn-block" href="<?php echo base_url(); ?>Dashboard/viewbookings">Go to my bookings</a>
 									</div>
 									<div class="col-xs-6  col-sm-6  col-md-6 ">
 										<a class="btn btn-success btn-block" href="<?php echo base_url(); ?>BookHorses/PayNow?bookingId=<?php echo base64_encode($this->encryption->encrypt($result[0]["bookingId"])); ?>">Pay now</a>

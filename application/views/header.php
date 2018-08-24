@@ -29,7 +29,7 @@
 						<li id="showLogin"><a href="<?php echo base_url(); ?>LoginRegisterServices/Signin">Sign in</a></li>
 						<li id="showSignup"><a href="<?php echo base_url(); ?>LoginRegisterServices/Signup">Sign up</a></li>
 					<?php } else {?>
-						<li><a href="javascript:void(0);" class="text-primary"><?php echo $this->session->userdata("firstName") . " " . $this->session->userdata("lastName"); ?></a></li>
+						<li><a href="<?php echo base_url(); ?>/Dashboard/userdashboard" class="text-primary"><?php echo $this->session->userdata("firstName") . " " . $this->session->userdata("lastName"); ?></a></li>
 						<li><a href="<?php echo base_url(); ?>LoginRegisterServices/CustomerLogout" class="text-primary">Sign out</a></li>
 					<?php }?>
                 </ul>
