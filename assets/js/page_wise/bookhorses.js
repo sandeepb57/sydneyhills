@@ -200,36 +200,38 @@ function AppendTheNumberOfRidersFormElements(val) {
 
     RidersCostDetails();
     var previousLength = $('.riders-form').length;
-    if (previousLength > val) {
-        for (var i = previousLength; i > val; i--) {
+    // console.log(previousLength, Number(val));
+
+    if (previousLength > Number(val)) {
+        for (var i = previousLength; i > Number(val); i--) {
             // console.log(i, i - 1);
             $('.riders-form')[(i - 1)].remove();
         }
-    } else {
-        $('.riders-form').remove();
     }
-    previousLength = $('.riders-form').length > 0 ? $('.riders-form').length : 1;
-    // console.log(val);
-    if (previousLength < val) {
-        for (var i = previousLength; i <= val; i++) {
+
+    previousLength = $('.riders-form').length > 0 ? $('.riders-form').length : 0;
+    // console.log(previousLength, $('.riders-form').length);
+
+    if (previousLength < Number(val)) {
+        for (var i = previousLength; i < Number(val); i++) {
             $("#no-of-riders-forms").append(ridersFormFields);
             // Changing the label and input, for and id attributes names for multiple fields of same type.
-            $("label[for = rider-firstname]").attr("for", $("label[for = rider-firstname]").attr("for") + i)
-            $("input[id = rider-firstname]").attr("id", $("input[id = rider-firstname]").attr("id") + i)
-            $("label[for = rider-lastname]").attr("for", $("label[for = rider-lastname]").attr("for") + i)
-            $("input[id = rider-lastname]").attr("id", $("input[id = rider-lastname]").attr("id") + i)
-            $("label[for = rider-email]").attr("for", $("label[for = rider-email]").attr("for") + i)
-            $("input[id = rider-email]").attr("id", $("input[id = rider-email]").attr("id") + i)
-            $("label[for = rider-mobile]").attr("for", $("label[for = rider-mobile]").attr("for") + i)
-            $("input[id = rider-mobile]").attr("id", $("input[id = rider-mobile]").attr("id") + i)
-            $("label[for = rider-age]").attr("for", $("label[for = rider-age]").attr("for") + i)
-            $("input[id = rider-age]").attr("id", $("input[id = rider-age]").attr("id") + i)
-            $("label[for = rider-height]").attr("for", $("label[for = rider-height]").attr("for") + i)
-            $("input[id = rider-height]").attr("id", $("input[id = rider-height]").attr("id") + i)
-            $("label[for = rider-weight]").attr("for", $("label[for = rider-weight]").attr("for") + i)
-            $("input[id = rider-weight]").attr("id", $("input[id = rider-weight]").attr("id") + i)
+            $("label[for = rider-firstname]").attr("for", $("label[for = rider-firstname]").attr("for") + (i + 1))
+            $("input[id = rider-firstname]").attr("id", $("input[id = rider-firstname]").attr("id") + (i + 1))
+            $("label[for = rider-lastname]").attr("for", $("label[for = rider-lastname]").attr("for") + (i + 1))
+            $("input[id = rider-lastname]").attr("id", $("input[id = rider-lastname]").attr("id") + (i + 1))
+            $("label[for = rider-email]").attr("for", $("label[for = rider-email]").attr("for") + (i + 1))
+            $("input[id = rider-email]").attr("id", $("input[id = rider-email]").attr("id") + (i + 1))
+            $("label[for = rider-mobile]").attr("for", $("label[for = rider-mobile]").attr("for") + (i + 1))
+            $("input[id = rider-mobile]").attr("id", $("input[id = rider-mobile]").attr("id") + (i + 1))
+            $("label[for = rider-age]").attr("for", $("label[for = rider-age]").attr("for") + (i + 1))
+            $("input[id = rider-age]").attr("id", $("input[id = rider-age]").attr("id") + (i + 1))
+            $("label[for = rider-height]").attr("for", $("label[for = rider-height]").attr("for") + (i + 1))
+            $("input[id = rider-height]").attr("id", $("input[id = rider-height]").attr("id") + (i + 1))
+            $("label[for = rider-weight]").attr("for", $("label[for = rider-weight]").attr("for") + (i + 1))
+            $("input[id = rider-weight]").attr("id", $("input[id = rider-weight]").attr("id") + (i + 1))
 
-            $("div#no-of-riders-forms").find(".panel .panel-title").last().html("Rider " + i)
+            $("div#no-of-riders-forms").find(".panel .panel-title").last().html("Rider " + (i + 1))
         }
     }
     $('.riders-form').removeClass("hidden");
