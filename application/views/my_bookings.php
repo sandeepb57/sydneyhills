@@ -46,57 +46,68 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-											<?php foreach ($result as $key => $bookings) {?>
-												<tr>
-													<td><?php echo ($key + 1); ?></td>
-													<td>
-														<?php ?>
-														<div class="book-date-wrapper">
-															<div class="day-txt"><?php echo date('D', strtotime($bookings['rideDate'])); ?></div>
-															<div class="num-date"><?php echo date('d', strtotime($bookings['rideDate'])); ?></div>
-															<div class="md-txt"><?php echo date('M', strtotime($bookings['rideDate'])) . ' ' . date('Y', strtotime($bookings['rideDate'])); ?></div>
-														</div>
-													</td>
-													<td>
-														<div class="booking-details">
-															<div class="ride-type"><?php echo $bookings['typeOfRide']; ?></div>
-															<div class="slot-time">Slot Time : <?php echo date('H:i A', strtotime($bookings['rideTime'])); ?></div>
-															<div class="no-of-riders">Consecutive week : <?php echo $bookings['consecutiveWeek']; ?></div>
-															<div class="no-of-riders">No. Of.Riders : <?php echo $bookings['noOfRiders']; ?></div>
-														</div>
-													</td>
+											<?php if($result){ ?>
+												<?php foreach ($result as $key => $bookings) {?>
+													<tr>
+														<td><?php echo ($key + 1); ?></td>
+														<td>
+															<?php ?>
+															<div class="book-date-wrapper">
+																<div class="day-txt"><?php echo date('D', strtotime($bookings['rideDate'])); ?></div>
+																<div class="num-date"><?php echo date('d', strtotime($bookings['rideDate'])); ?></div>
+																<div class="md-txt"><?php echo date('M', strtotime($bookings['rideDate'])) . ' ' . date('Y', strtotime($bookings['rideDate'])); ?></div>
+															</div>
+														</td>
+														<td>
+															<div class="booking-details">
+																<div class="ride-type"><?php echo $bookings['typeOfRide']; ?></div>
+																<div class="slot-time">Slot Time : <?php echo date('H:i A', strtotime($bookings['rideTime'])); ?></div>
+																<div class="no-of-riders">Consecutive week : <?php echo $bookings['consecutiveWeek']; ?></div>
+																<div class="no-of-riders">No. Of.Riders : <?php echo $bookings['noOfRiders']; ?></div>
+															</div>
+														</td>
 
-													<td>
-														<?php
-															$bookingStatus = '';
-															$btnColor = $bookings['bookingStatus'] == 1 ? 'btn-success' : 'btn-danger';
-															if($bookings['bookingStatus'] == 1){
-																$bookingStatus = 'Confirmed';
-															}else if($bookings['bookingStatus'] == 2){
-																$bookingStatus = 'Cancelled';
-															}else if($bookings['bookingStatus'] == 3){
-																$bookingStatus = 'Deined';
-															}else{
+														<td>
+															<?php
+																$bookingStatus = '';
+																$btnColor = $bookings['bookingStatus'] == 1 ? 'text-success' : 'text-danger';
+																if($bookings['bookingStatus'] == 1){
+																	$bookingStatus = 'Confirmed';
+																}else if($bookings['bookingStatus'] == 2){
+																	$bookingStatus = 'Cancelled';
+																}else if($bookings['bookingStatus'] == 3){
+																	$bookingStatus = 'Denied';
+																}else{
 
-															}
-														?>
-														<button type="button" class="btn <?php echo $btnColor; ?> btn-xs"><?php echo $bookingStatus; ?></button>
-													</td>
-													<td>
-														<div class="ride-price-details text-center">
+																}
+															?>
+															<h5 class="<?php echo $btnColor; ?> btn-xs"><b><?php echo $bookingStatus; ?></b></h5>
+														</td>
+														<td>
+															<div class="ride-price-details text-center">
 
-															<?php $price = ((int) ($bookings['consecutiveWeek'] == 0 ? 1 : $bookings['consecutiveWeek']) * (int) $bookings['noOfRiders'] * $bookings['rideAmount']);?>
+																<?php $price = ((int) ($bookings['consecutiveWeek'] == 0 ? 1 : $bookings['consecutiveWeek']) * (int) $bookings['noOfRiders'] * $bookings['rideAmount']);?>
 
-															<p class="ride-total-price">$ <?php echo $price; ?></p>
+																<p class="ride-total-price">$ <?php echo $price; ?></p>
 
-															<?php if ($bookings['bookingStatus'] == 1) {?>
-																<button class="btn btn-danger btn-xs" onclick="cancelBooking(<?php echo $bookings['bookingId']; ?>);"><i class="fa fa-remove"></i>&nbsp;Cancel booking</button>
-															<?php }?>
+																<?php if ($bookings['bookingStatus'] == 1) {?>
+																	<button class="btn btn-danger btn-xs" onclick="cancelBooking(<?php echo $bookings['bookingId']; ?>);"><i class="fa fa-remove"></i>&nbsp;Cancel booking</button>
+																<?php }?>
 
-														</div>
-													</td>
-												</tr>
-											<?php }?>
+															</div>
+														</td>
+													</tr>
+												<?php }}else{?>
+													<tr>
+														<td></td>
+														<td></td>
+														<td>
+															<h3 class="text-danger">No bookings</h3>
+														</td>
+														<td></td>
+														<td></td>
+													</tr>
+												<?php }?>
                                         </tbody>
                                     </table>
                                 </div>

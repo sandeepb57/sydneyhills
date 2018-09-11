@@ -18,5 +18,9 @@ class CommonServicesModel extends CI_Model
         } else {
             return false;
         }
-    }
+	}
+
+	public function setNewPassword(){
+
+	}
 }

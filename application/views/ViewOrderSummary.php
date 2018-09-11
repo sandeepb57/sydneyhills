@@ -195,7 +195,7 @@
 										</div>
 									</div>
 									<div class="col-xs-10 col-xs-push-1 col-sm-8 col-sm-push-3  col-md-8 col-md-push-2 p-0">
-										<a class="btn btn-primary btn-block" href="<?php echo base_url(); ?>dashboard">Go to my bookings</a>
+										<a class="btn btn-primary btn-block" href="<?php echo base_url(); ?>dashboard/viewbookings">Go to my bookings</a>
 									</div>
 								</div>
 							</div>

@@ -16,9 +16,8 @@
                 <?php $this->load->view("dashboard_sidebar"); ?>
                 <?php $this->load->view("dashboard_topbar"); ?>
                 <div class="right_col" role="main">
-               
-                </div>
 
+                </div>
                 <footer>
                     <div class="pull-right">
                         Copyright &copy;2018 <a href="http://sydneyhillshorseriding.com" target="_blank"> Sydneyhillshorseriding.com</a>. All Rights Reserved.

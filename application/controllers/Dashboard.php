@@ -11,6 +11,7 @@ class Dashboard extends CI_Controller
         $this->load->helper('url');
         $this->load->library('session');
         $this->load->model('UserDashboardModel');
+        $this->load->model('AdminDashboardModel');
         if (!$this->session->userdata('userType')) {
             redirect(base_url() . 'loginregisterservices/signin');
         }
@@ -31,8 +32,9 @@ class Dashboard extends CI_Controller
 
     public function allbookings()
     {
+		$adminallbookings['result'] = $this->AdminDashboardModel->getAllBookings();
         $this->session->set_userdata('active', true);
-        $this->load->view('all_bookings');
+        $this->load->view('all_bookings', $adminallbookings);
     }
 
     public function viewbookings()

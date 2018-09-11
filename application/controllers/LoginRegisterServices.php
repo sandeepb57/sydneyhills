@@ -84,6 +84,43 @@ class LoginRegisterServices extends CI_Controller
             $this->session->set_flashdata("registerError", "Something went worng, try again!!!");
             redirect('LoginRegisterServices/Signup');
         }
+	}
+
+	public function setNewPassword()
+    {
+        if ($this->session->userdata('customerId')) {
+            $condition = array(
+                "customerId" => $this->session->userdata('customerId'),
+                "customerstatus" => 1,
+            );
+			$result = $this->LoginRegisterModel->CustomerLogin($condition);
+
+            if ($this->passwordhashing->VerifyPasswordHash($this->input->post('currPwd', true), $result['data'][0]['customerPassword'])) {
+                if ($this->input->post('newPwd', true) == $this->input->post('confirmPwd', true)) {
+                    $updatePassword = array(
+                        "customerPassword" => $this->passwordhashing->CreatePasswordHash($this->input->post('newPwd', true)),
+                        "editedDate" => date("Y-m-d H:i:s"),
+                    );
+					$setPassword = $this->LoginRegisterModel->updateCustomerDetails($updatePassword, $condition);
+					if($setPassword){
+						$this->session->set_flashdata("changePasswordSuccess", "Password successfully changed.");
+						redirect(base_url() . 'dashboard');
+					}else{
+						$this->session->set_flashdata("changePasswordError", "Something went wrong, please try again.");
+						redirect(base_url() . 'dashboard/changepassword');
+					}
+                } else {
+                    $this->session->set_flashdata("changePasswordError", "New password is not matched with confirm password.");
+                    redirect(base_url() . 'dashboard/changepassword');
+                }
+            }else {
+				$this->session->set_flashdata("changePasswordError", "Current password is not matched.");
+				redirect(base_url() . 'dashboard/changepassword');
+			}
+        } else {
+            redirect(base_url() . 'dashboard');
+        }
+
     }
 
     public function logout()

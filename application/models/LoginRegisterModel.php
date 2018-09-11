@@ -15,8 +15,8 @@ class LoginRegisterModel extends CI_Model
         $this->db->select("*");
         $this->db->from("customers");
         $this->db->where($loginData);
-		$custLogin = $this->db->get();
-		// echo $this->db->last_query();
+        $custLogin = $this->db->get();
+        // echo $this->db->last_query();
         if (sizeof($custLogin->result_array()) > 0) {
             $result_array['status'] = 'OK';
             $result_array['data'] = $custLogin->result_array();
@@ -38,4 +38,17 @@ class LoginRegisterModel extends CI_Model
             return false;
         }
     }
+
+    public function updateCustomerDetails($dataArray, $condtion)
+    {
+        $res = $this->db->where($condtion);
+        $res = $this->db->update("customers", $dataArray);
+        // echo $this->db->last_query();
+        if ($res) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
