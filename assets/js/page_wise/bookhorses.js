@@ -93,6 +93,12 @@ jQuery(document).ready(function($) {
         }
     });
 
+    $('select.consecutive-week').change(function() {
+        if ($("#number-of-riders").val() > 0) {
+            RidersCostDetails()
+        }
+    });
+
     $("form[name='booking-horses']").validate({
 
         submitHandler: function(form) {
@@ -242,7 +248,7 @@ function AppendTheNumberOfRidersFormElements(val) {
 function RidersCostDetails() {
     $("tbody#riders-cost-details").children().remove();
     var typeOfRide = typeOfRideOptions.filter(ride => ride.rideTypeId == $("#type-of-ride").val())
-    var template = '<tr><td>' + $("#number-of-riders").val() + '</td><td>$ ' + typeOfRide[0].rideAmount + '</td></tr><tr><td>Sub Total</td><td>$ ' + (Number($("#number-of-riders").val()) * Number(typeOfRide[0].rideAmount)).toFixed(2) + '</td></tr>'
+    var template = '<tr><td>' + $("#consecutive-week").val() + '</td><td>' + $("#number-of-riders").val() + '</td><td>$ ' + Number(typeOfRide[0].rideAmount) + '</td></tr><tr><td></td><td>Sub Total</td><td>$ ' + (Number($("#consecutive-week").val()) * Number($("#number-of-riders").val()) * Number(typeOfRide[0].rideAmount)).toFixed(2) + '</td></tr>';
     $("tbody#riders-cost-details").append(template);
     $("#riders-cost").removeClass("hidden");
     $("#ride-type").html(typeOfRide[0].typeOfRide);

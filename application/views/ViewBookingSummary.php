@@ -104,6 +104,7 @@
 																			<td>Schedule Ride Date</td>
 																			<td>Ride Time</td>
 																			<td>No.of Riders</td>
+																			<td>Consecutive week</td>
 																		</tr>
 																	</thead>
 																	<tbody>
@@ -112,6 +113,7 @@
 																			<td><?php echo date("d-m-Y", strtotime($result[0]['rideDate'])); ?></td>
 																			<td><?php echo $result[0]['rideTime']; ?></td>
 																			<td><?php echo $result[0]['noOfRiders']; ?></td>
+																			<td><?php echo $result[0]['consecutiveWeek']; ?></td>
 																		</tr>
 																	</tbody>
 																</table>
@@ -157,8 +159,12 @@
 																		</tr>
 																	<?php }?>
 																		<tr class="small">
+																			<td colspan="8" class="text-right small text-bold">Consecutive week</td>
+																			<td><?php echo $result[0]['consecutiveWeek']; ?></td>
+																		</tr>
+																		<tr class="small">
 																			<td colspan="8" class="text-right small text-bold">Sub Total</td>
-																			<td>$ <?php echo number_format((float) ($result[0]['noOfRiders'] * $result[0]['rideAmount']), 2); ?></td>
+																			<td>$ <?php echo number_format((float) (($result[0]['consecutiveWeek'] == 0 ? 1 : $result[0]['consecutiveWeek']) * $result[0]['noOfRiders'] * $result[0]['rideAmount']), 2); ?></td>
 																		</tr>
 																	</tbody>
 																</table>
@@ -185,10 +191,10 @@
 									<div class="col-xs-10 col-xs-push-1 col-sm-8 col-sm-push-3 col-md-8 col-md-push-2">
 									<div class="row mb-30">
 									<div class="col-xs-6  col-sm-6  col-md-6  ">
-										<a class="btn btn-primary btn-block" href="<?php echo base_url(); ?>Dashboard/viewbookings">Go to my bookings</a>
+										<a class="btn btn-primary btn-block" href="<?php echo base_url(); ?>dashboard/viewbookings">Go to my bookings</a>
 									</div>
 									<div class="col-xs-6  col-sm-6  col-md-6 ">
-										<a class="btn btn-success btn-block" href="<?php echo base_url(); ?>BookHorses/PayNow?bookingId=<?php echo base64_encode($this->encryption->encrypt($result[0]["bookingId"])); ?>">Pay now</a>
+										<a class="btn btn-success btn-block" href="<?php echo base_url(); ?>bookhorses/paynow?bookingId=<?php echo base64_encode($this->encryption->encrypt($result[0]["bookingId"])); ?>">Pay now</a>
 									</div>
 									</div>
 									</div>

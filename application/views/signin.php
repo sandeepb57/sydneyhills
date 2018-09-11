@@ -63,7 +63,7 @@
 						<div class="clearfix"></div>
 						<p class="small text-center text-bold text-muted"><a class="text-black text-muted td-none" href="javascript:void(0);">Forgot Password ?</a></p>
 						<p class="ba-line small text-center text-bold text-muted">Don't have an account ?
-							<a href="<?php echo base_url(); ?>LoginRegisterServices/Signup"> <span id="show-signup-form" class="text-center text-bold">Sign up </span> </a>
+							<a href="<?php echo base_url(); ?>loginregisterservices/signup"> <span id="show-signup-form" class="text-center text-bold">Sign up </span> </a>
 						</p>
 					</form>
                 </div>

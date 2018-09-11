@@ -9,8 +9,8 @@
 				<div class="menu_section">
 					<h3>user</h3>
 					<ul class="nav side-menu">
-						<li><a href="<?php echo base_url(); ?>Dashboard/userdashboard"><i class="fa fa-home"></i> Dashboard </a></li>
-						<li><a href="<?php echo base_url(); ?>Dashboard/ViewBookings"><i class="fa fa-calendar"></i>My Bookings </a></li>
+						<li><a href="<?php echo base_url(); ?>dashboard"><i class="fa fa-home"></i> Dashboard </a></li>
+						<li><a href="<?php echo base_url(); ?>dashboard/viewbookings"><i class="fa fa-calendar"></i>My Bookings </a></li>
 					</ul>
 				</div>
 			<?php } ?>
@@ -18,8 +18,8 @@
 				<div class="menu_section">
 					<h3>Admin</h3>
 					<ul class="nav side-menu">
-						<li><a href="<?php echo base_url(); ?>Dashboard/"><i class="fa fa-home"></i> Dashboard </a></li>
-						<li><a href="<?php echo base_url(); ?>Dashboard/allbookings"><i class="fa fa-calendar"></i>Bookings </a></li>
+						<li><a href="<?php echo base_url(); ?>dashboard/"><i class="fa fa-home"></i> Dashboard </a></li>
+						<li><a href="<?php echo base_url(); ?>dashboard/allbookings"><i class="fa fa-calendar"></i>Bookings </a></li>
 						<li>
 							<a><i class="fa fa-desktop"></i> Manage Services <span class="fa fa-chevron-down"></span></a>
 							<ul class="nav child_menu">
@@ -29,8 +29,8 @@
 						</li>
 						<li><a><i class="fa fa-table"></i> Manage Horses <span class="fa fa-chevron-down"></span></a>
 							<ul class="nav child_menu">
-								<li><a href="<?php echo base_url(); ?>Horses/addhorse">Add Horse</a></li>
-								<li><a href="<?php echo base_url(); ?>Horses/">View All Horses</a></li>
+								<li><a href="<?php echo base_url(); ?>horses/addhorse">Add Horse</a></li>
+								<li><a href="<?php echo base_url(); ?>horses">View All Horses</a></li>
 							</ul>
 						</li>
 

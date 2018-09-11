@@ -9,8 +9,8 @@
                 <li class="">
                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                         <img src="<?php echo base_url(); ?>assets/dashboard/images/img.jpg" alt="">
-						<?php echo $usertype = $this->session->userdata('active') ? 'Admin' : 'User'; ?>
-                        <span class=" fa fa-angle-down"></span>
+						<?php echo ucwords($this->session->userdata('firstName')) . ' ' . ucwords($this->session->userdata('lastName')); ?>
+                        <span class="fa fa-angle-down"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-usermenu pull-right">
                         <li><a href="javascript:;"> Profile</a></li>
@@ -19,10 +19,10 @@
                                 <span>Change Password</span>
                             </a>
                         </li>
-                        <li><a href="<?php echo base_url(); ?>LoginRegisterServices/Signin"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                        <li><a href="<?php echo base_url(); ?>LoginRegisterServices/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                     </ul>
                 </li>
-                <li role="presentation" class="dropdown">
+                <!-- <li role="presentation" class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-bell-o"></i>
                         <span class="badge bg-green">6</span>
@@ -85,7 +85,7 @@
                             </div>
                         </li>
                     </ul>
-                </li>
+                </li> -->
             </ul>
         </nav>
     </div>

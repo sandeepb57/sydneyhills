@@ -46,7 +46,7 @@
             <main>
                 <div class="container">
                     <form class="booking-horses" name="booking-horses" id="booking-horses">
-					<!-- action="<?php //echo base_url(); ?>BookHorses/ConfirmBookingDetails" method="post" -->
+                        <!-- action="<?php //echo base_url(); ?>BookHorses/ConfirmBookingDetails" method="post" -->
                         <div class="row  mt-105 mb-40">
                             <div class="desc2 animate-box">
                                 <div class="col-sm-6 col-md-6">
@@ -84,33 +84,45 @@
                                                     <h2 class="panel-title"> Ride details</h2>
                                                 </div>
                                                 <div class="panel-body">
-													<div class="col-xxs-12 col-xs-12 alternate">
-														<section>
-															<div class="col-xxs-12 col-xs-6">
-																<h5><b>Seleted Date, Time</b></h5>
-															</div>
-															<div class="col-xxs-12 col-xs-6">
-																<h5 id="selected-date-time"></h5>
-															</div>
-														</section>
+                                                    <div class="col-xxs-12 col-xs-12 alternate">
+                                                        <section>
+                                                            <div class="col-xxs-12 col-xs-6">
+                                                                <h5><b>Seleted Date, Time</b></h5>
+                                                            </div>
+                                                            <div class="col-xxs-12 col-xs-6">
+                                                                <h5 id="selected-date-time"></h5>
+                                                            </div>
+                                                        </section>
                                                     </div>
+
                                                     <div class="col-xxs-12 col-xs-6 mt alternate">
                                                         <section>
-															<select id="type-of-ride" name="type-of-ride" class="type-of-ride">
+                                                            <select id="type-of-ride" name="type-of-ride" class="type-of-ride">
 																<option value="" disabled selected>Select Type of Ride</option>
 															</select>
                                                         </section>
                                                     </div>
                                                     <div class="col-xxs-12 col-xs-6 mt">
                                                         <section>
+                                                            <select id="consecutive-week" name="consecutive-week" class="consecutive-week">
+																<option value="" disabled selected>Select for consecutive week</option>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+                                                    		</select>
+                                                        </section>
+                                                    </div>
+                                                    <div class="col-xxs-12 col-xs-6 mt">
+                                                        <section>
                                                             <select id="number-of-riders" name="number-of-riders" class="number-of-riders">
-                                                        <option value="" disabled selected>Select Number of Riders</option>
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                        <option value="5">5</option>
-                                                    </select>
+																<option value="" disabled selected>Select Number of Riders</option>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+                                                    		</select>
                                                         </section>
                                                     </div>
                                                 </div>
@@ -126,6 +138,7 @@
                                                         <table class="table table-bordered">
                                                             <thead>
                                                                 <tr>
+                                                                    <td><b>Consecutive week</b></td>
                                                                     <td><b>Riders</b></td>
                                                                     <td><b>Amount</b></td>
                                                                 </tr>
@@ -136,7 +149,7 @@
                                                             </tbody>
                                                         </table>
                                                     </div>
-													<div class="text-bold"><small><i>* Taxes are not included.</i></small></div>
+                                                    <div class="text-bold"><small><i>* Taxes are not included.</i></small></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -214,9 +227,9 @@
                             <div class="row mb-30 hidden" id="confirm-booking-btn">
                                 <div class="col-xs-12 col-sm-6 col-sm-push-3">
                                     <?php if (!empty($this->session->userdata("customerId"))) {?>
-                                    	<input type="submit" class="btn btn-primary btn-block" name="submit" id="submit" value="Confirm Booking">
+                                    <input type="submit" class="btn btn-primary btn-block" name="submit" id="submit" value="Confirm Booking">
                                     <?php } else {?>
-                                    	<button type="submit" class="btn btn-primary btn-block" name="confirmbooking" id="confirmbooking" value="Confirm Booking">Confirm Booking</button>
+                                    <button type="submit" class="btn btn-primary btn-block" name="confirmbooking" id="confirmbooking" value="Confirm Booking">Confirm Booking</button>
                                     <?php }?>
                                 </div>
                             </div>
@@ -227,7 +240,7 @@
             <?php $this->load->view("footer");?>
         </div>
     </div>
-	<script src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script>
     <?php $this->load->view("imports-bottom");?>
 </body>
 

@@ -30,7 +30,7 @@ class BookHorsesModel extends CI_Model
 
     public function FetchBookingDetailsById($bookingId)
     {
-		$this->db->select("bd.customerId, bd.rideDate, bd.rideTime, bd.noOfRiders, bd.bookingStatus, bd.addedDate, brd.*, tr.rideTypeId, tr.typeOfRide, tr.rideAmount, al.abilityLevelId, al.abilityName");
+		$this->db->select("bd.customerId, bd.rideDate, bd.rideTime, bd.consecutiveWeek,bd.noOfRiders, bd.bookingStatus, bd.addedDate, brd.*, tr.rideTypeId, tr.typeOfRide, tr.rideAmount, al.abilityLevelId, al.abilityName");
 		$this->db->from("bookingdetails bd");
 		$this->db->join("bookingridersdetails brd", "brd.bookingId = bd.bookingId", "left");
 		$this->db->join("typeofrides tr", "tr.rideTypeId = bd.typeOfRide", "left");

@@ -101,7 +101,7 @@
                                 <input type="submit" name="shcrsubmit" id="shcrsubmit" class="mt-4 btn btn-login btn-dark text-center small btn-block" value="Sign up">
                             </div>
                             <div class="clearfix"></div>
-                            <p class="ba-line small text-center text-bold text-muted">Already have an account ? <a href="<?php echo base_url(); ?>LoginRegisterServices/Signin"><span id="show-login-form" class="text-center text-bold" name="username">Sign in</span></a>
+                            <p class="ba-line small text-center text-bold text-muted">Already have an account ? <a href="<?php echo base_url(); ?>loginregisterservices/signin"><span id="show-login-form" class="text-center text-bold" name="username">Sign in</span></a>
                         </form>
                     </div>
                 </div>

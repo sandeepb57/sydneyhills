@@ -164,9 +164,14 @@
 																	</tr>
 																	<?php }?>
 																	<tr>
+																		<td colspan="8" class="text-right small text-bold">Consecutive week</td>
+																		<td><?php echo $result[0]['consecutiveWeek']; ?>
+																		</td>
+																	</tr>
+																	<tr>
 																		<td colspan="8" class="text-right small text-bold">Sub Total</td>
 																		<td>$
-																			<?php echo number_format((sizeof($result) * $result[0]['rideAmount']), 2) ?>
+																			<?php echo number_format(($result[0]['consecutiveWeek'] == 0 ? 1 : $result[0]['consecutiveWeek']) * sizeof($result) * $result[0]['rideAmount'], 2) ?>
 																		</td>
 																	</tr>
 																	</tr>
@@ -177,7 +182,7 @@
 																	<tr>
 																		<td colspan="8" class="text-right small  text-bold">Total</td>
 																		<td>$
-																			<?php echo number_format(((sizeof($result) * $result[0]['rideAmount']) + 25), 2) ?>
+																			<?php echo number_format((($result[0]['consecutiveWeek'] == 0 ? 1 : $result[0]['consecutiveWeek']) * sizeof($result) * $result[0]['rideAmount'] + 25), 2) ?>
 																		</td>
 																	</tr>
 
@@ -190,7 +195,7 @@
 										</div>
 									</div>
 									<div class="col-xs-10 col-xs-push-1 col-sm-8 col-sm-push-3  col-md-8 col-md-push-2 p-0">
-										<a class="btn btn-primary btn-block" href="<?php echo base_url(); ?>Dashboard/viewbookings">Go to my bookings</a>
+										<a class="btn btn-primary btn-block" href="<?php echo base_url(); ?>dashboard">Go to my bookings</a>
 									</div>
 								</div>
 							</div>

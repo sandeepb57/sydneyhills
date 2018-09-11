@@ -31,6 +31,7 @@ class BookHorses extends CI_Controller
             "typeOfRide" => $this->input->post('type-of-ride', true),
             "rideDate" => date('Y-m-d',strtotime($this->input->post('booking-date', true))),
             "rideTime" => date('H:i:s',strtotime($this->input->post('booking-date', true))),
+            "consecutiveWeek" => $this->input->post('consecutive-week', true),
             "noOfRiders" => $this->input->post('number-of-riders', true),
             "bookingStatus" => 1,
             "addedDate" => date("Y-m-d H:i:s"),

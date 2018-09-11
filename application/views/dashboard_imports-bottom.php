@@ -23,4 +23,3 @@
 <script src="<?php echo base_url(); ?>assets/dashboard/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 <script src="<?php echo base_url(); ?>assets/dashboard/build/js/custom.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/dashboard/js/custom.js"></script>
-
