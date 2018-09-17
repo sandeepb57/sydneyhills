@@ -70,18 +70,23 @@
 														<td>
 															<?php
 																$bookingStatus = '';
-																$btnColor = $bookings['bookingStatus'] == 1 ? 'text-success' : 'text-danger';
-																if($bookings['bookingStatus'] == 1){
-																	$bookingStatus = 'Confirmed';
-																}else if($bookings['bookingStatus'] == 2){
-																	$bookingStatus = 'Cancelled';
-																}else if($bookings['bookingStatus'] == 3){
-																	$bookingStatus = 'Denied';
-																}else{
+																if ($bookings['bookingStatus'] == 1) {
+																	if($bookings['bookingAttended'] == 1){
+																		$bookingStatus = '<strong class="text-info font-weight-bold">Attended</strong>';
+																	}else if($bookings['bookingAttended'] == 2){
+																		$bookingStatus = '<strong class="text-warning">Not attended</strong>';
+																	}else{
+																		$bookingStatus = '<strong class="text-success">Confirmed</span>';
+																	}
+																} else if ($bookings['bookingStatus'] == 2) {
+																	$bookingStatus = '<strong class="text-danger">Cancelled</strong>';
+																} else if ($bookings['bookingStatus'] == 3) {
+																	$bookingStatus = '<strong class="text-danger">Denied</strong>';
+																} else {
 
 																}
+																echo $bookingStatus;
 															?>
-															<h5 class="<?php echo $btnColor; ?> btn-xs"><b><?php echo $bookingStatus; ?></b></h5>
 														</td>
 														<td>
 															<div class="ride-price-details text-center">
@@ -90,7 +95,7 @@
 
 																<p class="ride-total-price">$ <?php echo $price; ?></p>
 
-																<?php if ($bookings['bookingStatus'] == 1) {?>
+																<?php if ($bookings['bookingStatus'] == 1 && $bookings['bookingAttended'] == 0 && $bookings['bookingAttended'] == 0  && date('Y-m-d H:i', strtotime($bookings['rideDate'] . ' ' . $bookings['rideTime'])) > date('Y-m-d H:i')) {?>
 																	<button class="btn btn-danger btn-xs" onclick="cancelBooking(<?php echo $bookings['bookingId']; ?>);"><i class="fa fa-remove"></i>&nbsp;Cancel booking</button>
 																<?php }?>
 

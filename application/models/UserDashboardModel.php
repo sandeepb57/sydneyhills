@@ -8,7 +8,7 @@ class UserDashboardModel extends CI_Model
 
     public function getUserBookings()
     {
-        $this->db->select("bd.bookingId, bd.customerId, bd.rideDate, bd.rideTime, bd.consecutiveWeek,bd.noOfRiders, bd.bookingStatus, bd.addedDate, tr.rideTypeId, tr.typeOfRide, tr.rideAmount");
+        $this->db->select("bd.bookingId, bd.customerId, bd.rideDate, bd.rideTime, bd.consecutiveWeek,bd.noOfRiders, bd.bookingStatus, bd.bookingStatus, bd.addedDate, bd.bookingStatusComments, bd.bookingAttended, tr.rideTypeId, tr.typeOfRide, tr.rideAmount");
         $this->db->from("bookingdetails bd");
         $this->db->join("typeofrides tr", "tr.rideTypeId = bd.typeOfRide", "left");
         $this->db->where("bd.customerId", $this->session->userdata("customerId"));

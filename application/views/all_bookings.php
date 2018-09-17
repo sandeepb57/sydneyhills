@@ -34,7 +34,7 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-                                <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                                <table id="datatable-responsive1" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                     <thead>
                                         <tr>
                                             <th>Name</th>
@@ -45,11 +45,11 @@
                                             <th>No.of Riders</th>
                                             <th>Mobile number</th>
                                             <th>Ride Status</th>
+                                            <th>Action</th>
                                             <th>E-mail</th>
                                             <th>Address</th>
-                                            <th>Total price</th>
                                             <th>Ride Status Comments</th>
-                                            <th>Action</th>
+                                            <th>Total price</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -66,32 +66,45 @@
 												<td>
 													<?php
 														$bookingStatus = '';
-														$txtColor = $bookings['bookingStatus'] == 1 ? 'text-success' : 'text-danger';
 														if ($bookings['bookingStatus'] == 1) {
-															$bookingStatus = 'Confirmed';
+															if($bookings['bookingAttended'] == 1){
+																$bookingStatus = '<strong class="text-info font-weight-bold">Attended</strong>';
+															}else if($bookings['bookingAttended'] == 2){
+																$bookingStatus = '<strong class="text-warning">Not attended</strong>';
+															}else{
+																$bookingStatus = '<strong class="text-success">Confirmed</span>';
+															}
 														} else if ($bookings['bookingStatus'] == 2) {
-															$bookingStatus = 'Cancelled';
+															$bookingStatus = '<strong class="text-danger">Cancelled</strong>';
 														} else if ($bookings['bookingStatus'] == 3) {
-															$bookingStatus = 'Denied';
+															$bookingStatus = '<strong class="text-danger">Denied</strong>';
 														} else {
 
 														}
+														echo $bookingStatus;
 													?>
-													<label class="<?php echo $txtColor; ?>"><?php echo $bookingStatus; ?></label>
+												</td>
+												<td>
+													<?php if ($bookings['bookingStatus'] == 1 && $bookings['bookingAttended'] == 0 && date('Y-m-d H:i', strtotime($bookings['rideDate'] . ' ' . $bookings['rideTime'])) > date('Y-m-d H:i')) { ?>
+
+														<button type="button" class="btn btn-sm btn-danger" onclick="addCommentBeforeDeny(<?php echo $bookings['bookingId'] ?>, 'toDeny');" >Deny</button>
+
+													<?php } else if($bookings['bookingStatus'] == 1 && $bookings['bookingAttended'] == 0  && date('Y-m-d H:i', strtotime($bookings['rideDate'] . ' ' . $bookings['rideTime'])) < date('Y-m-d H:i')){ ?>
+
+														<button type="button" class="btn btn-sm btn-primary" onclick="addCommentBeforeDeny(<?php echo $bookings['bookingId'] ?>, 'isAttended');" >Attended or Not</button>
+
+													<?php }else{
+														echo 'No action needed.';
+													} ?>
 												</td>
 												<td><?php echo $bookings['emailAddress']; ?></td>
 												<td><?php echo $bookings['customerAddress']; ?></td>
+												<td><?php echo $bookings['bookingStatusComments'] == '' ? 'None' : $bookings['bookingStatusComments']; ?></td>
 												<td>
 													<?php
 														$price = ((int) ($bookings['consecutiveWeek'] == 0 ? 1 : $bookings['consecutiveWeek']) * (int) $bookings['noOfRiders'] * $bookings['rideAmount']);
 														echo '$ '. $price;
 													?>
-												</td>
-												<td><?php echo $bookings['bookingStatusComments'] == '' ? 'None' : $bookings['bookingStatusComments']; ?></td>
-												<td>
-													<?php if($bookings['bookingStatus'] == 1){ ?>
-														<button type="button" class="btn btn-sm btn-danger" onclick="addCommentBeforeDeny(<?php echo $bookings['bookingId'] ?>);" >Deny</button>
-													<?php } else{echo 'No actions.';} ?>
 												</td>
 											</tr>
 										<?php }}else{?>

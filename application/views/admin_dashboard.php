@@ -21,7 +21,7 @@
                             <div class="page-title">
                                 <div class="title_left">
                                     <h3>Rides</h3>
-									<?php print_r($result); ?>
+									<?php //print_r($result); ?>
                                 </div>
                             </div>
                         </div>

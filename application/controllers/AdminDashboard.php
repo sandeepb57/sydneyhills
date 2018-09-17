@@ -16,9 +16,13 @@ class AdminDashboard extends CI_Controller
         }
     }
 
-    public function denyBooking()
+    public function adminBookingActions()
     {
-        $dataArray = array("bookingStatus" => 3, "bookingStatusComments" => $this->input->post('comment', true), "editedDate" => date('Y-m-d H:i:s'));
+		if(!empty($this->input->post('isAttended', true))){
+			$dataArray = array("bookingAttended" => $this->input->post('isAttended', true), "bookingStatusComments" => $this->input->post('comment', true), "editedDate" => date('Y-m-d H:i:s'));
+		}else{
+			$dataArray = array("bookingStatus" => 3, "bookingStatusComments" => $this->input->post('comment', true), "editedDate" => date('Y-m-d H:i:s'));
+		}
         $condArray = array("bookingId" => $this->input->post('bookingId', true));
         $result = $this->AdminDashboardModel->setDenyBookingById($dataArray, $condArray);
         if ($result) {
