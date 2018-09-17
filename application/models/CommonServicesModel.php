@@ -13,14 +13,10 @@ class CommonServicesModel extends CI_Model
         $this->db->order_by('rideTypeId', "ASC");
         $typeOfRides = $this->db->get("typeofrides");
         // echo $this->db->last_query();
-        if (sizeof($typeOfRides->result_array()) > 0) {
+        if (is_array($typeOfRides->result_array()) && sizeof($typeOfRides->result_array()) > 0) {
             return $typeOfRides->result_array();
         } else {
             return false;
         }
-	}
-
-	public function setNewPassword(){
-
-	}
+    }
 }

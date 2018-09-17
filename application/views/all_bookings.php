@@ -90,7 +90,7 @@
 												<td><?php echo $bookings['bookingStatusComments'] == '' ? 'None' : $bookings['bookingStatusComments']; ?></td>
 												<td>
 													<?php if($bookings['bookingStatus'] == 1){ ?>
-														<button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target=".status-change-modal">Deny</button>
+														<button type="button" class="btn btn-sm btn-danger" onclick="addCommentBeforeDeny(<?php echo $bookings['bookingId'] ?>);" >Deny</button>
 													<?php } else{echo 'No actions.';} ?>
 												</td>
 											</tr>
@@ -117,31 +117,18 @@
                         </div>
                     </div>
 
-                    <div class="modal fade status-change-modal" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-close"></i></span>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true"><i class="fa fa-close"></i></span>
                                     </button>
-                                    <h4 class="modal-title" id="myModalLabel2">Change Rider Status</h4>
+                                    <h4 class="modal-title"></h4>
                                 </div>
                                 <div class="modal-body">
 
-                                    <form>
-                                        <div class="form-group col-md-8 col-md-push-2">
-                                            <label>Select Ride Status</label>
-                                            <select class="form-control">
-                                                <option>Change Status</option>
-                                                <option>Pending</option>
-                                                <option>Attended</option>
-                                                <option>Not Attended</option>
-                                            </select>
-                                        </div>
-                                    </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-success">Save changes</button>
                                 </div>
                             </div>
                         </div>
@@ -160,5 +147,6 @@
         <script src="<?php echo base_url(); ?>assets/dashboard/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/dashboard/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/dashboard/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+        <script src="<?php echo base_url(); ?>assets/dashboard/js/adminallbookings.js"></script>
     </body>
 </html>

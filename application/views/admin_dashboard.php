@@ -21,6 +21,7 @@
                             <div class="page-title">
                                 <div class="title_left">
                                     <h3>Rides</h3>
+									<?php print_r($result); ?>
                                 </div>
                             </div>
                         </div>
@@ -35,7 +36,7 @@
                                         </div>
                                         <div class="right">
                                             <span class="ride-heading">Total Rides</span>
-                                            <div>506 in this month</div>
+                                            <div><?php echo $result['total_rides']; ?> in this month</div>
                                         </div>
                                     </div>
                                 </div>
@@ -46,7 +47,7 @@
                                         </div>
                                         <div class="right">
                                             <span class="ride-heading">Completed Rides</span>
-                                            <div>36 in this month</div>
+                                            <div><?php echo $result['completed']; ?> in this month</div>
                                         </div>
                                     </div>
                                 </div>
@@ -57,7 +58,7 @@
                                         </div>
                                         <div class="right">
                                             <span class="ride-heading">Cancelled Rides</span>
-                                            <div>20 in this month</div>
+                                            <div><?php echo $result['cancelled']; ?> in this month</div>
                                         </div>
                                     </div>
                                 </div>
@@ -68,7 +69,7 @@
                                         </div>
                                         <div class="right">
                                             <span class="ride-heading">Total Horses</span>
-                                            <div>10 Horses</div>
+                                            <div><?php echo $result['total_horses']; ?> Horses</div>
                                         </div>
                                     </div>
                                 </div>

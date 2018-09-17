@@ -55,7 +55,7 @@
                                     <div class="ln_solid"></div>
                                     <div class="form-group">
                                         <div class="col-md-6 col-md-offset-3">
-                                            <button onclick="goBack()" type="button" class="btn btn-dark">Cancel</button>
+                                            <a href="<?php echo base_url(); ?>dashboard" type="button" class="btn btn-dark">Cancel</a>
                                             <button id="submit" type="submit" class="btn btn-warning">Submit</button>
                                         </div>
                                     </div>

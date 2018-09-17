@@ -21,8 +21,9 @@ class Dashboard extends CI_Controller
     {
         if ($this->session->userdata('userType') == 2) {
             /* Admin Dashboard  */
+            $response['result'] = $this->AdminDashboardModel->getDashboardDetails();
             $this->session->set_userdata('active', true);
-            $this->load->view('admin_dashboard');
+            $this->load->view('admin_dashboard', $response);
         } else {
             /* User Dashboard  */
             $this->session->set_userdata('active', false);
@@ -32,7 +33,7 @@ class Dashboard extends CI_Controller
 
     public function allbookings()
     {
-		$adminallbookings['result'] = $this->AdminDashboardModel->getAllBookings();
+        $adminallbookings['result'] = $this->AdminDashboardModel->getAllBookings();
         $this->session->set_userdata('active', true);
         $this->load->view('all_bookings', $adminallbookings);
     }
