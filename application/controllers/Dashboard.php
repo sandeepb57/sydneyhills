@@ -21,7 +21,8 @@ class Dashboard extends CI_Controller
     {
         if ($this->session->userdata('userType') == 2) {
             /* Admin Dashboard  */
-            $response['result'] = $this->AdminDashboardModel->getDashboardDetails();
+			$response['result'] = $this->AdminDashboardModel->getDashboardDetails();
+			// $response['summary'] = $this->AdminDashboardModel->getALLTypeRidesSummary();
             $this->session->set_userdata('active', true);
             $this->load->view('admin_dashboard', $response);
         } else {

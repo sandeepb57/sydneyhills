@@ -15,7 +15,16 @@ class AdminDashboardModel extends CI_Model
         } else {
             return false;
         }
-    }
+	}
+
+	public function getALLTypeRidesSummary(){
+		$summary = $this->db->query("SELECT tr.rideTypeId, tr.typeOfRide, TypeOfRides(tr.rideTypeId, 1) as January, TypeOfRides(tr.rideTypeId, 2) as February, TypeOfRides(tr.rideTypeId, 3) as March, TypeOfRides(tr.rideTypeId, 4) as April, TypeOfRides(tr.rideTypeId, 5) as May, TypeOfRides(tr.rideTypeId, 6) as June, TypeOfRides(tr.rideTypeId, 7) as July, TypeOfRides(tr.rideTypeId, 8) as August, TypeOfRides(tr.rideTypeId, 9) as September, TypeOfRides(tr.rideTypeId, 10) as October, TypeOfRides(tr.rideTypeId, 11) as November, TypeOfRides(tr.rideTypeId, 12) as December FROM sh_typeofrides tr LEFT JOIN sh_bookingdetails bd ON bd.typeOfRide = tr.rideTypeId GROUP BY tr.typeOfRide ORDER BY tr.rideTypeId");
+		if($summary){
+			return $summary->result_array();
+		}else{
+			return false;
+		}
+	}
 
     public function getAllBookings()
     {
