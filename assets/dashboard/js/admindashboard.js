@@ -24,14 +24,14 @@ var chart = new Chart(ctx, {
                 display: true,
                 scaleLabel: {
                     display: true,
-                    labelString: 'Month'
+                    labelString: 'Months'
                 }
             }],
             yAxes: [{
                 display: true,
                 scaleLabel: {
                     display: true,
-                    labelString: 'Value'
+                    labelString: 'Number of rides'
                 }
             }]
         }
@@ -53,7 +53,7 @@ function fetchRideTypeSummary() {
 
         // Updating the chart data
         updateChartData(dataRideTypeSummary, keys);
-        // Updating the view ride type
+        // Updating the Top riding details
         updateViewRideTypeData(dataRideTypeSummary);
     })
 }
@@ -82,19 +82,44 @@ function updateChartData(summary, keys) {
     chart.update();
 }
 
+// Top riding details
 function updateViewRideTypeData(rideTypeSummary) {
-    var typeOfRides = [];
+    var typeOfRides = {};
     rideTypeSummary.forEach(typeOfRidesObj => {
-        typeOfRides.push(typeOfRidesObj.typeOfRide.replace(/\s/g, '').replace('(', '').replace(')', ''));
         var sum = ignoreSomeValues(Object.values(typeOfRidesObj)).reduce((a, b) => (Number(a) + Number(b)), 0);
-        typeOfRides[typeOfRidesObj.typeOfRide.replace(/\s/g, '').replace('(', '').replace(')', '')] = sum;
+        typeOfRides[typeOfRidesObj.typeOfRide] = sum;
     });
-    console.log(typeOfRides);
-    typeOfRides.forEach(element => {
-        // $("#" + element.toString()).attr("data-transitiongoal", typeOfRides[element]);
-        $("#" + element.toString()).css('width', typeOfRides[element] + '%').attr('aria-valuenow', typeOfRides[element]);
-        console.log(element, typeOfRides[element]);
+
+    // console.log(typeOfRides);
+    var sortingRideCounts = [];
+
+    $.each(typeOfRides, function(key, value) {
+        sortingRideCounts.push({ count: value, rideType: key });
     });
+
+    sortingRideCounts.sort(function(a, b) {
+        if (a.count < b.count) { return 1 }
+        if (a.count > b.count) { return -1 }
+        return 0;
+    });
+    // console.log(sortingRideCounts);
+    var template = '';
+    var color = '';
+    $.each(sortingRideCounts, function(key, value) {
+        // console.log(key, value.count, value.rideType);
+        color = value.count > 0 ? 'bg-green' : '';
+        template += `<div>
+						<p>` + value.rideType + `</p>
+						<div class="">
+							<div class="progress progress_sm">
+								<div class="progress-bar ` + color + `" role="progressbar" style="width:` + value.count + `%" aria-valuenow="` + value.count + `"></div>
+							</div>
+						</div>
+					</div>`;
+
+    });
+
+    $("#top-rides").html(template);
 }
 
 // removing unwanted values and keys based on months

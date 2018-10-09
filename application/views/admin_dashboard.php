@@ -116,76 +116,18 @@
 				</div> -->
 				<div class="row">
 					<div class="col-md-12 col-sm-12 col-xs-12">
-						<div class="col-md-9 col-sm-12 col-xs-12">
-							<canvas id="myChart" style="background: #fff"></canvas>
+					<!-- Line graph -->
+						<div class="col-md-8 col-sm-12 col-xs-12" style="margin: 0 3%;background: #fff;">
+							<canvas id="myChart"></canvas>
 						</div>
 						<div class="col-md-3 col-sm-3 col-xs-12 bg-white">
 							<div class="x_title">
 								<h2>Top Riding Details</h2>
 								<div class="clearfix"></div>
 							</div>
+						<!-- Top riding details refer function updateViewRideTypeData in admindashboard.js -->
+							<div class="col-md-12 col-sm-12 col-xs-6" id="top-rides">
 
-							<div class="col-md-12 col-sm-12 col-xs-6">
-								<div>
-									<p>Private Lessons (30 mins)</p>
-									<div class="">
-										<div class="progress progress_sm" style="width: 76%;">
-											<div class="progress-bar bg-green" id="PrivateLessons30mins" role="progressbar"></div>
-										</div>
-									</div>
-								</div>
-								<div>
-									<p>Private Lessons (1 hour)</p>
-									<div class="">
-										<div class="progress progress_sm" style="width: 76%;">
-											<div class="progress-bar bg-green" id="PrivateLessons1hour" role="progressbar"></div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-12 col-sm-12 col-xs-6">
-								<div>
-									<p>Group Lessons</p>
-									<div class="">
-										<div class="progress progress_sm" style="width: 76%;">
-											<div class="progress-bar bg-green" id="GroupLessons" role="progressbar" ></div>
-										</div>
-									</div>
-								</div>
-								<div>
-									<p>Junior Riding Club (2 hours)</p>
-									<div class="">
-										<div class="progress progress_sm" style="width: 76%;">
-											<div class="progress-bar bg-green" id="JuniorRidingClub2hours" role="progressbar"></div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-12 col-sm-12 col-xs-6">
-								<div>
-									<p>Pony Lead (15 mins)</p>
-									<div class="">
-										<div class="progress progress_sm" style="width: 76%;">
-											<div class="progress-bar bg-green" id="PonyLead15mins" role="progressbar"></div>
-										</div>
-									</div>
-								</div>
-								<div>
-									<p>School Holiday Camps per day</p>
-									<div class="">
-										<div class="progress progress_sm" style="width: 76%;">
-											<div class="progress-bar bg-green" id="SchoolHolidayCampsperday" role="progressbar"></div>
-										</div>
-									</div>
-								</div>
-								<div>
-									<p>School Holiday Camps (3 days)</p>
-									<div class="">
-										<div class="progress progress_sm" style="width: 76%;">
-											<div class="progress-bar bg-green" id="SchoolHolidayCamps3days" role="progressbar"></div>
-										</div>
-									</div>
-								</div>
 							</div>
 						</div>
 					</div>
